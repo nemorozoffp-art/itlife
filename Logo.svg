@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 520" width="100%" height="100%">
+  <defs>
+    <!-- Премиальный глубокий градиент: Cyan -> Royal Blue -->
+    <linearGradient id="corpGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F0FF" />
+      <stop offset="60%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+
+    <!-- Градиент акцентного ядра -->
+    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#6366F1" />
+    </linearGradient>
+
+    <!-- Мягкое свечение для темной темы -->
+    <filter id="corpGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Внешний статусный круг-монолит с технологичным срезом -->
+  <circle cx="260" cy="260" r="230" 
+          fill="none" 
+          stroke="url(#corpGrad)" 
+          stroke-width="8" 
+          opacity="0.25" />
+
+  <g filter="url(#corpGlow)">
+    <!-- 1. СЕРВЕРНЫЙ СТЕК (3 мощных монолитных бруска слева) -->
+    <!-- Верхний сервер -->
+    <rect x="100" y="150" width="140" height="48" rx="10" 
+          fill="url(#corpGrad)" />
+    <circle cx="130" cy="174" r="6" fill="#05070F" />
+    <line x1="155" y1="174" x2="215" y2="174" stroke="#05070F" stroke-width="6" stroke-linecap="round" />
+
+    <!-- Средний сервер -->
+    <rect x="100" y="215" width="140" height="48" rx="10" 
+          fill="url(#corpGrad)" />
+    <circle cx="130" cy="239" r="6" fill="#05070F" />
+    <line x1="155" y1="239" x2="215" y2="239" stroke="#05070F" stroke-width="6" stroke-linecap="round" />
+
+    <!-- Нижний сервер -->
+    <rect x="100" y="280" width="140" height="48" rx="10" 
+          fill="url(#corpGrad)" />
+    <circle cx="130" cy="304" r="6" fill="#05070F" />
+    <line x1="155" y1="304" x2="215" y2="304" stroke="#05070F" stroke-width="6" stroke-linecap="round" />
+
+
+    <!-- 2. СОВРЕМЕННОЕ ГЕОМЕТРИЧЕСКОЕ ОБЛАКО (Справа вверху) -->
+    <path d="M 280,210 
+             C 280,180 305,155 335,155 
+             C 342,155 348,157 354,160 
+             C 365,140 388,125 415,125 
+             C 455,125 485,155 485,195 
+             C 485,200 484,205 482,210 
+             L 280,210 Z" 
+          fill="url(#coreGrad)" 
+          opacity="0.9" />
+
+    <!-- Двунаправленный шлюз данных между облаком и серверами -->
+    <line x1="260" y1="174" x2="260" y2="295" stroke="#00F0FF" stroke-width="6" stroke-linecap="round" stroke-dasharray="10 8" />
+
+
+    <!-- 3. ТЕХНОЛОГИЧНАЯ ШЕСТЕРНЯ-ЯДРО (Справа внизу) -->
+    <!-- Корпус шестерни из чистых модулей -->
+    <g transform="translate(370, 310)">
+      <circle cx="0" cy="0" r="65" fill="none" stroke="url(#corpGrad)" stroke-width="22" />
+      <circle cx="0" cy="0" r="30" fill="none" stroke="#00F0FF" stroke-width="6" />
+      <circle cx="0" cy="0" r="10" fill="#FFFFFF" />
+
+      <!-- Зубцы шестерни (симметричные монолитные выступы) -->
+      <rect x="-10" y="-84" width="20" height="22" rx="4" fill="url(#corpGrad)" />
+      <rect x="-10" y="62" width="20" height="22" rx="4" fill="url(#corpGrad)" />
+      <rect x="-84" y="-10" width="22" height="20" rx="4" fill="url(#corpGrad)" />
+      <rect x="62" y="-10" width="22" height="20" rx="4" fill="url(#corpGrad)" />
+      
+      <rect x="-10" y="-84" width="20" height="22" rx="4" fill="url(#corpGrad)" transform="rotate(45)" />
+      <rect x="-10" y="62" width="20" height="22" rx="4" fill="url(#corpGrad)" transform="rotate(45)" />
+      <rect x="-84" y="-10" width="22" height="20" rx="4" fill="url(#corpGrad)" transform="rotate(45)" />
+      <rect x="62" y="-10" width="22" height="20" rx="4" fill="url(#corpGrad)" transform="rotate(45)" />
+    </g>
+
+    <!-- 4. НИЖНЯЯ ПЛАТФОРМА ШИНЫ ДАННЫХ -->
+    <line x1="140" y1="370" x2="380" y2="370" stroke="url(#corpGrad)" stroke-width="8" stroke-linecap="round" />
+    <line x1="180" y1="390" x2="340" y2="390" stroke="url(#corpGrad)" stroke-width="6" stroke-linecap="round" opacity="0.6" />
+  </g>
+</svg>
