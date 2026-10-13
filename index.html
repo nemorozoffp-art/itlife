@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IT Life | Инновационная веб-разработка, Cloud & CRM архитектура</title>
+  <title>IT Life | Digital Architecture, Cloud Systems &amp; CRM Engineering</title>
   
   <!-- Tailwind CSS & Lucide Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <script>
@@ -18,20 +18,21 @@
       theme: {
         extend: {
           colors: {
-            it: {
-              dark: '#070A11',
-              card: '#0D1322',
-              surface: '#121A2D',
-              cyan: '#06B6D4',
-              cyanGlow: '#22D3EE',
-              accent: '#3B82F6',
-              lime: '#10B981'
+            cyber: {
+              void: '#05070F',
+              base: '#080D1A',
+              card: 'rgba(13, 20, 38, 0.75)',
+              border: 'rgba(56, 189, 248, 0.25)',
+              cyan: '#00F0FF',
+              blue: '#3B82F6',
+              purple: '#A855F7',
+              pink: '#EC4899',
+              emerald: '#10B981'
             }
           },
           fontFamily: {
-            title: ['Space Grotesk', 'sans-serif'],
-            sans: ['Inter', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
           }
         }
       }
@@ -39,363 +40,460 @@
   </script>
 
   <style>
-    .cyan-text-gradient {
-      background: linear-gradient(135deg, #FFFFFF 0%, #22D3EE 50%, #3B82F6 100%);
+    /* Анимированные насыщенные градиенты */
+    .holo-gradient {
+      background: linear-gradient(135deg, #00F0FF 0%, #3B82F6 40%, #A855F7 70%, #EC4899 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-size: 200% 200%;
+      animation: gradientShift 6s ease infinite;
     }
-    .neon-card {
-      border: 1px solid rgba(6, 182, 212, 0.2);
-      box-shadow: 0 0 25px rgba(6, 182, 212, 0.08);
-      transition: all 0.3s ease;
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-    .neon-card:hover {
-      border: 1px solid rgba(34, 211, 238, 0.6);
-      box-shadow: 0 0 35px rgba(6, 182, 212, 0.22);
+
+    /* Стеклянные неоновые карточки нового поколения */
+    .glass-panel {
+      background: rgba(12, 19, 36, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 240, 255, 0.18);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .cyber-grid {
-      background-size: 40px 40px;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    .glass-panel:hover {
+      border-color: rgba(0, 240, 255, 0.55);
+      box-shadow: 0 12px 40px 0 rgba(0, 240, 255, 0.22);
+      transform: translateY(-4px);
     }
-    .logo-glow {
-      filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.45));
+
+    /* Фоновые живые размытия */
+    .glow-orb-cyan {
+      background: radial-gradient(circle, rgba(0,240,255,0.22) 0%, rgba(0,0,0,0) 70%);
+    }
+    .glow-orb-purple {
+      background: radial-gradient(circle, rgba(168,85,247,0.22) 0%, rgba(0,0,0,0) 70%);
     }
   </style>
 </head>
-<body class="bg-it-dark text-slate-100 font-sans antialiased selection:bg-it-cyan selection:text-black cyber-grid relative">
+<body class="bg-cyber-void text-slate-100 font-sans antialiased selection:bg-cyber-cyan selection:text-black relative overflow-x-hidden">
 
-  <!-- ВЕРХНИЙ БАР МОНИТОРИНГА СИСТЕМ -->
-  <div class="bg-black/60 border-b border-white/5 py-2 px-4 backdrop-blur-md text-xs font-mono">
-    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+  <!-- ЖИВОЙ ФОНОВЫЙ ХОЛСТ С ЧАСТИЦАМИ И СВЯЗЯМИ (CANVAS) -->
+  <canvas id="cyber-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+  <!-- СВЕТОВЫЕ НЕОНОВЫЕ ПЯТНА НА ФОНЕ -->
+  <div class="fixed -top-40 -left-40 w-[600px] h-[600px] glow-orb-cyan blur-3xl pointer-events-none z-0"></div>
+  <div class="fixed top-1/2 -right-40 w-[650px] h-[650px] glow-orb-purple blur-3xl pointer-events-none z-0"></div>
+
+  <!-- 1. ВЕРХНЯЯ КИБЕР-ПАНЕЛЬ СТАТУСА -->
+  <aside aria-label="Системный мониторинг" class="relative z-40 bg-black/70 border-b border-cyan-500/20 py-2 px-4 backdrop-blur-xl text-xs font-mono">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
       <div class="flex items-center gap-3">
-        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[11px]">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> SYSTEM HEALTH: 99.98%
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyber-cyan border border-cyan-500/30 text-[11px] font-bold">
+          <span class="w-2 h-2 rounded-full bg-cyber-cyan animate-ping"></span> PRODUCTION CLUSTER
         </span>
-        <span class="hidden md:inline text-slate-400 text-[11px]">Server Nodes: <strong class="text-white">Active</strong> | Latency: <strong class="text-it-cyan">14ms</strong></span>
+        <span class="hidden sm:inline text-slate-400 text-[11px]">Bitrix Core: <strong class="text-white">Migrated</strong></span>
+        <span class="hidden sm:inline text-slate-600">|</span>
+        <span class="hidden sm:inline text-slate-400 text-[11px]">Database Engine: <strong class="text-cyber-cyan">Independent REST API</strong></span>
       </div>
-      <div class="flex items-center gap-4 text-slate-400 text-[11px]">
-        <span class="text-slate-300">Сертифицированный стек разработки</span>
+      <div class="flex items-center gap-4 text-slate-300 text-[11px]">
+        <span class="text-slate-400">Arch: <span class="text-white font-semibold">Modular Full-Stack</span></span>
         <span class="text-slate-600">|</span>
-        <span class="text-it-cyan font-bold">IT Life Cloud Labs</span>
+        <span class="text-cyber-cyan font-bold flex items-center gap-1">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-cyber-cyan"></i> Verified Partner
+        </span>
       </div>
     </div>
-  </div>
+  </aside>
 
-  <!-- ШАПКА САЙТА С НАВИГАЦИЕЙ -->
-  <header class="sticky top-0 z-40 bg-it-dark/95 backdrop-blur-xl border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+  <!-- 2. ГЛАВНАЯ ШАПКА САЙТА -->
+  <header class="sticky top-0 z-40 bg-cyber-void/85 backdrop-blur-2xl border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
       
       <!-- Логотип IT Life -->
       <a href="index.html" class="flex items-center gap-3.5 group">
-        <img src="logo.png" alt="IT Life" class="h-10 sm:h-11 w-auto object-contain logo-glow group-hover:scale-105 transition-transform" onerror="this.src='Logo_безфона.png'">
+        <div class="relative p-2 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border border-cyan-500/40 group-hover:border-cyber-cyan transition-all duration-300">
+          <img src="logo.png" alt="IT Life Logo" class="h-9 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(0,240,255,0.7)] group-hover:scale-105 transition-transform" onerror="this.src='Logo_безфона.png'">
+        </div>
         <div class="leading-tight">
-          <span class="block font-title text-xl font-bold tracking-wider text-white">IT <span class="text-it-cyan">Life</span></span>
+          <span class="block font-sans text-2xl font-extrabold tracking-wide text-white">IT <span class="holo-gradient">Life</span></span>
           <span class="block text-[9px] font-mono tracking-widest text-slate-400 uppercase">a PAVLIKneMOROZOFF company</span>
         </div>
       </a>
 
-      <!-- Меню страниц -->
-      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
-        <a href="index.html" class="text-it-cyan transition flex items-center gap-1 font-semibold">
-          <i data-lucide="layers" class="w-4 h-4"></i> Главная
+      <!-- Меню -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300">
+        <a href="#solutions" class="hover:text-cyber-cyan transition flex items-center gap-1.5">
+          <i data-lucide="sparkles" class="w-4 h-4 text-cyber-cyan"></i> Решения
         </a>
-        <a href="#services" class="hover:text-it-cyan transition flex items-center gap-1">
-          <i data-lucide="cpu" class="w-4 h-4"></i> Услуги
+        <a href="#playground" class="hover:text-cyber-cyan transition flex items-center gap-1.5">
+          <i data-lucide="terminal" class="w-4 h-4 text-purple-400"></i> Архитектура &amp; Код
         </a>
-        <a href="#competencies" class="hover:text-it-cyan transition flex items-center gap-1">
-          <i data-lucide="award" class="w-4 h-4"></i> Сертификация
+        <a href="#competencies" class="hover:text-cyber-cyan transition flex items-center gap-1.5">
+          <i data-lucide="award" class="w-4 h-4 text-emerald-400"></i> Сертификация
         </a>
-        <a href="#stack" class="hover:text-it-cyan transition flex items-center gap-1">
-          <i data-lucide="terminal" class="w-4 h-4"></i> Стек &amp; Архитектура
-        </a>
-        <a href="#contacts" class="hover:text-it-cyan transition flex items-center gap-1">
-          <i data-lucide="send" class="w-4 h-4"></i> Контакты
+        <a href="#calculator" class="hover:text-cyber-cyan transition flex items-center gap-1.5">
+          <i data-lucide="calculator" class="w-4 h-4 text-pink-400"></i> Калькулятор стека
         </a>
       </nav>
 
-      <!-- CTA -->
+      <!-- Правая кнопка вызова -->
       <div class="flex items-center gap-3">
-        <a href="#contacts" class="px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider bg-gradient-to-r from-it-cyan to-it-accent text-black hover:opacity-95 shadow-lg shadow-it-cyan/20 hover:scale-105 transition-all">
-          Обсудить проект
+        <a href="#contacts" class="relative group overflow-hidden px-6 py-2.5 rounded-xl font-mono text-xs uppercase font-bold tracking-wider text-black bg-gradient-to-r from-cyber-cyan via-blue-400 to-purple-400 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/50 hover:scale-105 transition-all">
+          <span class="relative z-10 flex items-center gap-1.5">
+            <i data-lucide="send" class="w-3.5 h-3.5"></i> Запустить проект
+          </span>
         </a>
       </div>
     </div>
   </header>
 
-  <!-- 1. HERO SECTION -->
-  <section class="relative min-h-[85vh] flex items-center justify-center px-4 py-20 overflow-hidden">
-    <!-- Свечения -->
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[650px] h-[350px] bg-it-cyan/15 rounded-full blur-[140px] pointer-events-none"></div>
-
-    <div class="relative z-10 max-w-5xl mx-auto text-center">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-it-cyan/30 bg-it-cyan/10 text-it-cyanGlow text-xs font-semibold mb-8 font-mono">
-        <i data-lucide="shield-check" class="w-4 h-4 text-it-cyan"></i>
-        <span>Промышленная разработка без зависимости от шаблонных CMS</span>
-      </div>
-
-      <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6 font-title">
-        <span class="block text-white">Инженерия Сайтов,</span>
-        <span class="cyan-text-gradient">Cloud-Решений &amp; Собственных CRM</span>
-      </h1>
-
-      <p class="max-w-2xl mx-auto text-base sm:text-xl text-slate-300 font-light mb-10 leading-relaxed">
-        Проектируем высоконагруженные цифровые платформы, индивидуальные CRM-системы и облачные сервисы. Полная автономность вашего бизнеса без ежемесячной аренды чужих платформ.
-      </p>
-
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#services" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-gradient-to-r from-it-cyan to-it-accent text-black shadow-xl shadow-it-cyan/25 hover:scale-105 transition-all text-sm uppercase tracking-wider">
-          Посмотреть архитектуру услуг
-        </a>
-        <a href="#competencies" class="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold border border-white/20 bg-white/5 hover:bg-white/10 hover:border-it-cyan/50 transition-all flex items-center justify-center gap-2 text-sm">
-          <i data-lucide="file-check-2" class="w-4 h-4 text-it-cyan"></i> Подтвержденные сертификаты
-        </a>
-      </div>
-
-      <!-- Live Server Metrics -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-10 border-t border-white/10 text-left font-mono">
-        <div class="p-4 rounded-2xl bg-it-card border border-white/5">
-          <div class="text-3xl font-extrabold text-it-cyan">0.4s</div>
-          <div class="text-xs text-slate-400 mt-1 font-sans">Скорость отклика интерфейсов</div>
-        </div>
-        <div class="p-4 rounded-2xl bg-it-card border border-white/5">
-          <div class="text-3xl font-extrabold text-white">100%</div>
-          <div class="text-xs text-slate-400 mt-1 font-sans">Собственный код и базы данных</div>
-        </div>
-        <div class="p-4 rounded-2xl bg-it-card border border-white/5">
-          <div class="text-3xl font-extrabold text-it-cyan">REST</div>
-          <div class="text-xs text-slate-400 mt-1 font-sans">Прямые Webhooks для вашей CRM</div>
-        </div>
-        <div class="p-4 rounded-2xl bg-it-card border border-white/5">
-          <div class="text-3xl font-extrabold text-white">PRO</div>
-          <div class="text-xs text-slate-400 mt-1 font-sans">Сертифицированные инженеры</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. СЕКЦИЯ: НАПРАВЛЕНИЯ И УСЛУГИ -->
-  <section id="services" class="py-20 px-4 bg-it-surface/40 border-y border-white/5">
+  <!-- 3. HERO СЕКЦИЯ: ЯРКИЙ ТЕХНОЛОГИЧНЫЙ ЦЕНТР -->
+  <section class="relative z-10 pt-16 sm:pt-24 pb-20 px-4">
     <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-it-cyan text-xs font-mono uppercase tracking-widest font-semibold">Направления инженерии</span>
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-white font-title mt-2">Решения для бизнеса любого масштаба</h2>
-        <p class="text-slate-400 text-sm sm:text-base mt-3">От ультрабыстрых корпоративных сайтов до отказоустойчивых бэкенд-систем управления.</p>
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Левая часть: Сильный оффер -->
+        <div class="lg:col-span-7 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/40 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 text-cyber-cyan text-xs font-mono font-bold mb-6">
+            <i data-lucide="cpu" class="w-4 h-4"></i>
+            <span>Архитектура без абонентской платы Битрикс24</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6">
+            Разрабатываем <br>
+            <span class="holo-gradient">Автономные Сайты</span><br>
+            и Собственные CRM
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-300 font-normal leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
+            Переводим компании с громоздких систем на сверхбыстрый независимый стек. Полный контроль над данными, открытый REST API, прямые интеграции с WhatsApp и Telegram без ограничений тарифов.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a href="#contacts" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-gradient-to-r from-cyber-cyan to-blue-500 text-black shadow-xl shadow-cyan-500/30 hover:scale-105 transition-all text-sm uppercase tracking-wider font-mono flex items-center justify-center gap-2">
+              <i data-lucide="zap" class="w-4 h-4 fill-current"></i> Начать трансформацию
+            </a>
+            <a href="#playground" class="w-full sm:w-auto px-7 py-4 rounded-xl font-semibold border border-white/20 bg-white/5 hover:bg-white/10 hover:border-cyber-cyan transition-all text-sm flex items-center justify-center gap-2 font-mono">
+              <i data-lucide="play" class="w-4 h-4 text-purple-400"></i> Смотреть код архитектуры
+            </a>
+          </div>
+
+          <!-- Метрики в стиле HUD -->
+          <div class="grid grid-cols-3 gap-4 mt-12 pt-8 border-t border-white/10 font-mono">
+            <div>
+              <div class="text-2xl sm:text-3xl font-extrabold text-cyber-cyan">99+</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">Google PageSpeed</div>
+            </div>
+            <div>
+              <div class="text-2xl sm:text-3xl font-extrabold text-purple-400">0 ₸</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">Ежемесячная аренда CRM</div>
+            </div>
+            <div>
+              <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400">&lt;50ms</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">Отправка лида в базу</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Правая часть: Живой кибер-терминал с кодом переключения -->
+        <div class="lg:col-span-5">
+          <div class="relative glass-panel rounded-3xl p-5 border border-cyan-500/40 shadow-2xl overflow-hidden">
+            <!-- Верх терминала -->
+            <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                <span class="ml-2 text-xs font-mono text-slate-400">it-life-engine.js</span>
+              </div>
+              <span class="px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyber-cyan font-mono text-[10px] font-bold">ONLINE</span>
+            </div>
+
+            <!-- Кодовый блок -->
+            <pre class="font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto p-2 bg-black/40 rounded-xl border border-white/5"><code><span class="text-purple-400">// 1. Direct CRM Lead Ingestion</span>
+<span class="text-blue-400">async function</span> <span class="text-cyber-cyan">dispatchLead</span>(client) {
+  <span class="text-slate-500">const</span> payload = {
+    source: <span class="text-emerald-300">"IT Life Custom Core"</span>,
+    client: client.phone,
+    timestamp: Date.now(),
+    routing: <span class="text-emerald-300">"Direct Database / TG Bot"</span>
+  };
+  
+  <span class="text-purple-400">await</span> fetch(<span class="text-yellow-300">"/api/v1/crm/lead"</span>, {
+    method: <span class="text-emerald-300">"POST"</span>,
+    headers: { <span class="text-emerald-300">"X-Engine"</span>: <span class="text-emerald-300">"IT_LIFE"</span> },
+    body: JSON.stringify(payload)
+  });
+  
+  <span class="text-blue-400">return</span> <span class="text-cyan-400">{ status: 200, bitrixTax: 0 }</span>;
+}</code></pre>
+
+            <!-- Индикатор живого потока событий -->
+            <div class="mt-4 p-3 rounded-xl bg-gradient-to-r from-cyan-950/30 to-purple-950/30 border border-cyan-500/20 flex items-center justify-between text-xs font-mono">
+              <div class="flex items-center gap-2 text-slate-300">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+                <span>Интеграция CRM активна</span>
+              </div>
+              <span class="text-cyber-cyan font-bold">Latency: 12ms</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. СЕКЦИЯ: ИНТЕРАКТИВНЫЙ ТЕХНОЛОГИЧЕСКИЙ ПЛЕЙГРАУНД -->
+  <section id="playground" class="relative z-10 py-20 px-4 bg-cyber-base/70 border-y border-white/10">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-cyber-cyan text-xs font-mono uppercase tracking-widest font-semibold">Архитектурный сплит</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white font-title mt-2">Почему мы уходим от шаблонов Битрикса</h2>
+        <p class="text-slate-400 text-sm mt-3">Сравните стандартное тяжелое коробочное решение и чистый высокотехнологичный стек IT Life.</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
-        <!-- Услуга 1 -->
-        <div class="p-8 rounded-3xl bg-it-card border border-white/10 neon-card flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-it-cyan/10 border border-it-cyan/30 flex items-center justify-center text-it-cyan mb-6">
-              <i data-lucide="layout" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-2xl font-bold text-white mb-3 font-title">Веб-разработка &amp; Порталы</h3>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-              Многостраничные адаптивные сайты, корпоративные порталы и визитки с высшим баллом производительности (Google PageSpeed 95+).
-            </p>
-            <ul class="space-y-2.5 text-xs text-slate-300 font-mono mb-8">
-              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-it-cyan"></i> Архитектура MPA &amp; SPA</li>
-              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-it-cyan"></i> Интерактивные графики &amp; калькуляторы</li>
-              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-it-cyan"></i> SEO-структура под поисковики</li>
-            </ul>
+      <!-- Таблица жесткого контраста -->
+      <div class="grid md:grid-cols-2 gap-8">
+        
+        <!-- СТАРЫЙ БИТРИКС24 -->
+        <div class="glass-panel p-8 rounded-3xl border-red-500/30 bg-red-950/10">
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-red-500/20 text-red-400 border border-red-500/40">ШАБЛОНЫ БИТРИКС24</span>
+            <i data-lucide="alert-triangle" class="w-5 h-5 text-red-400"></i>
           </div>
-          <a href="#contacts" class="text-xs font-bold text-it-cyan hover:text-white transition flex items-center gap-1 font-mono uppercase">
-            Заказать разработку <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </a>
+          <h3 class="text-xl font-bold text-white mb-4">Ограничения и ежемесячные расходы</h3>
+          <ul class="space-y-3.5 text-xs sm:text-sm text-slate-300">
+            <li class="flex items-start gap-3">
+              <i data-lucide="x-circle" class="w-4 h-4 text-red-400 shrink-0 mt-0.5"></i>
+              <span>Ежемесячная платная подписка на тарифы, растущая с каждым новым сотрудником.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="x-circle" class="w-4 h-4 text-red-400 shrink-0 mt-0.5"></i>
+              <span>Тяжелое PHP-ядро, перегруженный код и долгая загрузка мобильной версии.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="x-circle" class="w-4 h-4 text-red-400 shrink-0 mt-0.5"></i>
+              <span>Сложность нестандартных доработок: любые правки стоят сотен часов интеграторов.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="x-circle" class="w-4 h-4 text-red-400 shrink-0 mt-0.5"></i>
+              <span>Зависимость от сторонних серверов и облака чужой компании.</span>
+            </li>
+          </ul>
         </div>
 
-        <!-- Услуга 2: Кастомная CRM -->
-        <div class="p-8 rounded-3xl bg-it-card border border-it-cyan/40 neon-card flex flex-col justify-between relative">
-          <div class="absolute -top-3 right-6 px-3 py-1 rounded-full bg-it-cyan text-black font-mono font-bold text-[10px] uppercase tracking-wider">
-            Флагманский стек
+        <!-- НОВЫЙ СТЕК IT LIFE -->
+        <div class="glass-panel p-8 rounded-3xl border-cyan-500/50 bg-cyan-950/10">
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/20 text-cyber-cyan border border-cyan-500/40">СОБСТВЕННЫЙ СТЕК IT LIFE</span>
+            <i data-lucide="check-check" class="w-5 h-5 text-cyber-cyan"></i>
           </div>
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-it-cyan/20 border border-it-cyan/50 flex items-center justify-center text-it-cyan mb-6">
-              <i data-lucide="database" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-2xl font-bold text-white mb-3 font-title">Кастомные CRM-системы</h3>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-              Собственная архитектура управления клиентами и сделками. Без абонентской платы Битрикса, с нужными именно вашей компании функциями.
-            </p>
-            <ul class="space-y-2.5 text-xs text-slate-300 font-mono mb-8">
-              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-it-cyan"></i> Автосбор заявок через Webhook API</li>
-              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-it-cyan"></i> Уведомления в Telegram и WhatsApp</li>
-              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-it-cyan"></i> Полный доступ к своей базе данных</li>
-            </ul>
-          </div>
-          <a href="#contacts" class="text-xs font-bold text-it-cyan hover:text-white transition flex items-center gap-1 font-mono uppercase">
-            Обсудить архитектуру CRM <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </a>
+          <h3 class="text-xl font-bold text-white mb-4">Полная свобода и предельная скорость</h3>
+          <ul class="space-y-3.5 text-xs sm:text-sm text-slate-300">
+            <li class="flex items-start gap-3">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-cyber-cyan shrink-0 mt-0.5"></i>
+              <span><strong>0 ₸ ежемесячной абонплаты</strong> — вы один раз владеете собственной системой навсегда.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-cyber-cyan shrink-0 mt-0.5"></i>
+              <span>Мгновенный отклик интерфейсов (чистый HTML/JS/CSS без лишнего мусора).</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-cyber-cyan shrink-0 mt-0.5"></i>
+              <span>Прямая передача лидов в Telegram, WhatsApp и собственную базу данных за доли секунды.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-cyber-cyan shrink-0 mt-0.5"></i>
+              <span>Легкое масштабирование и неограниченное число рабочих мест.</span>
+            </li>
+          </ul>
         </div>
 
-        <!-- Услуга 3 -->
-        <div class="p-8 rounded-3xl bg-it-card border border-white/10 neon-card flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-it-cyan/10 border border-it-cyan/30 flex items-center justify-center text-it-cyan mb-6">
-              <i data-lucide="server" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-2xl font-bold text-white mb-3 font-title">Серверы &amp; Cloud DevOps</h3>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-              Настройка отказоустойчивых Linux-серверов, SSL-сертификатов, доменов .KZ, баз данных PostgreSQL / MySQL и регулярных бэкапов.
-            </p>
-            <ul class="space-y-2.5 text-xs text-slate-300 font-mono mb-8">
-              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-it-cyan"></i> Защита от сбоев и DDOS</li>
-              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-it-cyan"></i> CI/CD деплой на GitHub / серверах</li>
-              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-it-cyan"></i> Миграция со старых движков</li>
-            </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. СЕКЦИЯ: ИНТЕРАКТИВНЫЙ КАЛЬКУЛЯТОР ПРОЕКТА -->
+  <section id="calculator" class="relative z-10 py-20 px-4">
+    <div class="max-w-4xl mx-auto glass-panel p-8 sm:p-12 rounded-3xl border border-cyan-500/30">
+      <div class="text-center mb-10">
+        <span class="text-cyber-cyan text-xs font-mono uppercase tracking-widest font-semibold">Конструктор сметы</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-title mt-1">Оцените объем вашей архитектуры</h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-2">Подвигайте параметры, чтобы сформировать предварительную конфигурацию стека.</p>
+      </div>
+
+      <div class="space-y-6">
+        <div>
+          <div class="flex justify-between text-sm mb-2 font-mono">
+            <span class="text-slate-300">Количество страниц и модулей сайта:</span>
+            <span id="calc-pages-val" class="font-bold text-cyber-cyan">5 страниц (Корпоративный)</span>
           </div>
-          <a href="#contacts" class="text-xs font-bold text-it-cyan hover:text-white transition flex items-center gap-1 font-mono uppercase">
-            Заказать аудит <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </a>
+          <input id="calc-pages" type="range" min="1" max="20" value="5" class="w-full accent-cyan-400 cursor-pointer">
+        </div>
+
+        <div>
+          <label class="block text-sm text-slate-300 mb-2 font-mono">Нужна ли собственная CRM-система?</label>
+          <div class="grid grid-cols-2 gap-3">
+            <button type="button" onclick="setCrmOption(true)" id="crm-yes" class="py-3 rounded-xl border border-cyan-400 bg-cyan-500/20 text-white font-mono text-xs font-bold transition">Да, собственная CRM</button>
+            <button type="button" onclick="setCrmOption(false)" id="crm-no" class="py-3 rounded-xl border border-white/10 bg-white/5 text-slate-400 font-mono text-xs font-bold transition">Только сайт с формой</button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm text-slate-300 mb-2 font-mono">Прямые каналы интеграции:</label>
+          <div class="grid grid-cols-3 gap-3 text-xs font-mono">
+            <label class="flex items-center gap-2 p-3 rounded-xl bg-white/5 border border-white/10 cursor-pointer">
+              <input type="checkbox" id="int-tg" checked onchange="updateCalc()" class="accent-cyan-400">
+              <span>Telegram Bot</span>
+            </label>
+            <label class="flex items-center gap-2 p-3 rounded-xl bg-white/5 border border-white/10 cursor-pointer">
+              <input type="checkbox" id="int-wa" checked onchange="updateCalc()" class="accent-cyan-400">
+              <span>WhatsApp API</span>
+            </label>
+            <label class="flex items-center gap-2 p-3 rounded-xl bg-white/5 border border-white/10 cursor-pointer">
+              <input type="checkbox" id="int-cloud" onchange="updateCalc()" class="accent-cyan-400">
+              <span>Cloud Server</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Итог калькулятора -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 pt-8 border-t border-white/10 font-mono">
+        <div class="p-4 rounded-2xl bg-black/40 border border-white/5">
+          <span class="text-xs text-slate-400 block">Ориентировочный срок разработки:</span>
+          <span id="calc-days" class="text-2xl sm:text-3xl font-extrabold text-cyber-cyan block mt-1">10–14 рабочих дней</span>
+          <span class="text-[11px] text-slate-500 mt-1 block">С полной версткой, тестами и адаптацией</span>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-black/40 border border-white/5">
+          <span class="text-xs text-slate-400 block">Экономия на подписках в год:</span>
+          <span id="calc-saved" class="text-2xl sm:text-3xl font-extrabold text-emerald-400 block mt-1">от 360 000 ₸ / год</span>
+          <span class="text-[11px] text-slate-500 mt-1 block">За счет отказа от лицензий Битрикса</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 3. СЕКЦИЯ: ОФИЦИАЛЬНЫЕ КОМПЕТЕНЦИИ И СЕРТИФИКАТЫ -->
-  <section id="competencies" class="py-20 px-4">
-    <div class="max-w-6xl mx-auto">
+  <!-- 6. СЕКЦИЯ: ПОДТВЕРЖДЕННЫЕ СЕРТИФИКАТЫ И КОМПЕТЕНЦИИ -->
+  <section id="competencies" class="relative z-10 py-20 px-4 bg-cyber-base/60 border-t border-white/10">
+    <div class="max-w-7xl mx-auto">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
         <div>
-          <span class="text-it-cyan text-xs font-mono uppercase tracking-widest font-semibold">Подтвержденная квалификация</span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-title mt-1">Сертифицированные стандарты качества</h2>
-          <p class="text-slate-400 text-xs sm:text-sm mt-1">Опыт работы со сложными корпоративными системами и архитектурой 1С-Битрикс</p>
+          <span class="text-cyber-cyan text-xs font-mono uppercase tracking-widest font-semibold">Официальная аккредитация</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-title mt-1">Инженерный багаж &amp; Сертификаты</h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-1">Мы досконально знаем архитектуру Битрикса изнутри, поэтому строим альтернативы чище и надежнее</p>
         </div>
-        <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
-          <i data-lucide="shield" class="w-4 h-4 text-it-cyan"></i> Верифицированные сертификаты разработчика
+        <div class="text-xs font-mono text-emerald-400 flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Все сертификаты подтверждены
         </div>
       </div>
 
-      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-5">
-        <div class="p-6 rounded-2xl bg-it-card border border-white/5 neon-card flex flex-col justify-between">
-          <div>
-            <div class="text-it-cyan mb-3 font-mono text-xs font-bold">1C-BITRIX #01</div>
-            <h4 class="font-bold text-white text-base mb-2">Администратор. Базовый</h4>
-            <p class="text-slate-400 text-xs">Управление безопасностью, пользователями, структурой данных и базовыми модулями.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="glass-panel p-6 rounded-2xl border-cyan-500/20">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyber-cyan">CERTIFIED</span>
+            <i data-lucide="award" class="w-5 h-5 text-cyan-400"></i>
           </div>
-          <div class="mt-4 pt-3 border-t border-white/10 flex items-center gap-1.5 text-[11px] text-emerald-400 font-mono">
-            <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Сертификат подтвержден
-          </div>
+          <h4 class="font-bold text-white text-base mb-1">Установка и настройка</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">Развертывание веб-серверов, окружения, баз данных и системных требований.</p>
         </div>
 
-        <div class="p-6 rounded-2xl bg-it-card border border-white/5 neon-card flex flex-col justify-between">
-          <div>
-            <div class="text-it-cyan mb-3 font-mono text-xs font-bold">1C-BITRIX #02</div>
-            <h4 class="font-bold text-white text-base mb-2">Администратор. Модули</h4>
-            <p class="text-slate-400 text-xs">Глубокая конфигурация интернет-решений, каталогов, торговых процедур и интеграций.</p>
+        <div class="glass-panel p-6 rounded-2xl border-cyan-500/20">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/20 text-blue-400">CERTIFIED</span>
+            <i data-lucide="shield" class="w-5 h-5 text-blue-400"></i>
           </div>
-          <div class="mt-4 pt-3 border-t border-white/10 flex items-center gap-1.5 text-[11px] text-emerald-400 font-mono">
-            <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Сертификат подтвержден
-          </div>
+          <h4 class="font-bold text-white text-base mb-1">Администратор. Базовый</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">Безопасность учетных записей, права доступа, инфоблоки и структуры каталогов.</p>
         </div>
 
-        <div class="p-6 rounded-2xl bg-it-card border border-white/5 neon-card flex flex-col justify-between">
-          <div>
-            <div class="text-it-cyan mb-3 font-mono text-xs font-bold">1C-BITRIX #03</div>
-            <h4 class="font-bold text-white text-base mb-2">Контент-менеджер</h4>
-            <p class="text-slate-400 text-xs">SEO-структурирование страниц, визуальный редактор, оптимизация медиаконтента.</p>
+        <div class="glass-panel p-6 rounded-2xl border-cyan-500/20">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/20 text-purple-400">CERTIFIED</span>
+            <i data-lucide="layers" class="w-5 h-5 text-purple-400"></i>
           </div>
-          <div class="mt-4 pt-3 border-t border-white/10 flex items-center gap-1.5 text-[11px] text-emerald-400 font-mono">
-            <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Сертификат подтвержден
-          </div>
+          <h4 class="font-bold text-white text-base mb-1">Администратор. Модули</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">Сложные компоненты, электронная коммерция, веб-формы и интеграционные потоки.</p>
         </div>
 
-        <div class="p-6 rounded-2xl bg-it-card border border-white/5 neon-card flex flex-col justify-between">
-          <div>
-            <div class="text-it-cyan mb-3 font-mono text-xs font-bold">PARTNER #04</div>
-            <h4 class="font-bold text-white text-base mb-2">Партнерская сеть</h4>
-            <p class="text-slate-400 text-xs">Официальный статус партнерства и внедрения корпоративных платформ.</p>
+        <div class="glass-panel p-6 rounded-2xl border-cyan-500/20">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400">PARTNER</span>
+            <i data-lucide="briefcase" class="w-5 h-5 text-emerald-400"></i>
           </div>
-          <div class="mt-4 pt-3 border-t border-white/10 flex items-center gap-1.5 text-[11px] text-emerald-400 font-mono">
-            <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Партнерский статус
-          </div>
+          <h4 class="font-bold text-white text-base mb-1">Партнерская программа</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">Официальный опыт проектного взаимодействия и внедрения корпоративных платформ.</p>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- 4. СЕКЦИЯ: ИНТЕРАКТИВНЫЙ БРИФ / ФОРМА СВЯЗИ -->
-  <section id="contacts" class="py-20 px-4 bg-it-surface/30 border-t border-white/5 relative">
-    <div class="max-w-4xl mx-auto bg-gradient-to-b from-it-card to-it-dark border border-it-cyan/40 rounded-3xl p-8 sm:p-12 shadow-2xl">
+  <!-- 7. ФОРМА ОБРАТНОЙ СВЯЗИ -->
+  <section id="contacts" class="relative z-10 py-20 px-4">
+    <div class="max-w-4xl mx-auto glass-panel p-8 sm:p-12 rounded-3xl border border-cyan-500/40">
       <div class="text-center mb-10">
-        <span class="text-it-cyan text-xs font-mono uppercase tracking-widest font-semibold">Прямой канал связи</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-title cyan-text-gradient mt-2">Запустить разработку</h2>
-        <p class="text-slate-400 text-sm mt-2">Оставьте запрос — мы свяжемся и составим подробный план архитектуры вашего проекта.</p>
+        <span class="text-cyber-cyan text-xs font-mono uppercase tracking-widest font-semibold">Связь с разработчиком</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-title mt-2">Готовы обсудить архитектуру?</h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-2">Заполните поля — заявка поступит напрямую к инженеру IT Life.</p>
       </div>
 
-      <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+      <form onsubmit="handleLeadSubmit(event)" class="space-y-4 font-mono">
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-mono text-slate-300 mb-1">Ваше имя / Компания</label>
-            <input type="text" required placeholder="Павел" class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white focus:outline-none focus:border-it-cyan transition text-sm">
+            <label class="block text-xs text-slate-300 mb-1">Имя / Компания</label>
+            <input type="text" required placeholder="Павел" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/10 text-white focus:outline-none focus:border-cyber-cyan text-xs">
           </div>
           <div>
-            <label class="block text-xs font-mono text-slate-300 mb-1">Телефон / WhatsApp</label>
-            <input type="tel" required placeholder="+7 (___) ___-__-__" class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white focus:outline-none focus:border-it-cyan transition text-sm">
-          </div>
-        </div>
-
-        <div class="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-mono text-slate-300 mb-1">Тип задачи</label>
-            <select class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white focus:outline-none focus:border-it-cyan transition text-sm">
-              <option value="site">Многостраничный корпоративный сайт</option>
-              <option value="crm">Разработка собственной CRM-системы</option>
-              <option value="redesign">Перенос сайта с Битрикса на чистый стек</option>
-              <option value="cloud">Cloud / Настройка серверов и баз данных</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-xs font-mono text-slate-300 mb-1">Срочность проекта</label>
-            <select class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white focus:outline-none focus:border-it-cyan transition text-sm">
-              <option value="now">Готовы стартовать на этой неделе</option>
-              <option value="month">В течение месяца</option>
-              <option value="consult">Нужна предварительная консультация</option>
-            </select>
+            <label class="block text-xs text-slate-300 mb-1">Телефон / Telegram / WA</label>
+            <input type="text" required placeholder="+7 (___) ___-__-__" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/10 text-white focus:outline-none focus:border-cyber-cyan text-xs">
           </div>
         </div>
 
         <div>
-          <label class="block text-xs font-mono text-slate-300 mb-1">Кратко о задаче (необязательно)</label>
-          <textarea rows="3" placeholder="Опишите ваши требования или ссылку на текущий сайт..." class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white focus:outline-none focus:border-it-cyan transition text-sm"></textarea>
+          <label class="block text-xs text-slate-300 mb-1">Краткое описание задачи</label>
+          <textarea rows="3" placeholder="Нужен корпоративный сайт, перенос с Битрикса или разработка собственной CRM..." class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/10 text-white focus:outline-none focus:border-cyber-cyan text-xs"></textarea>
         </div>
 
-        <button type="submit" class="w-full py-4 mt-2 rounded-xl font-bold bg-gradient-to-r from-it-cyan via-it-cyanGlow to-it-accent text-black transition-all text-sm uppercase tracking-wider font-mono shadow-xl shadow-it-cyan/25 hover:scale-[1.02]">
-          Отправить заявку инженеру
+        <button type="submit" class="w-full py-4 mt-2 rounded-xl font-bold bg-gradient-to-r from-cyber-cyan via-blue-500 to-purple-500 text-black text-xs uppercase tracking-wider shadow-xl shadow-cyan-500/25 hover:scale-[1.01] transition-all">
+          Отправить заявку в разработку
         </button>
       </form>
     </div>
   </section>
 
-  <!-- ПОДВАЛ IT LIFE -->
-  <footer id="footer-section" class="border-t border-white/10 bg-black pt-12 pb-36 px-4 text-xs text-slate-500">
+  <!-- 8. ФУТЕР С ЭТАЛОННЫМ БРЕНДИНГОМ РАЗРАБОТЧИКА -->
+  <footer id="footer-section" class="relative z-10 border-t border-white/10 bg-black/90 pt-12 pb-36 px-4 text-xs text-slate-500">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
       
-      <!-- Бренд инфо -->
+      <!-- Логотип и миссия -->
       <div class="flex items-center gap-3.5">
-        <img src="logo.png" alt="IT Life" class="h-9 w-auto object-contain" onerror="this.src='Logo_безфона.png'">
-        <div class="text-left">
-          <span class="font-title font-bold text-white text-base">IT Life</span>
-          <p class="text-slate-400 text-[11px]">Технологическая лаборатория веб-инженерии и облачных систем</p>
+        <img src="logo.png" alt="IT Life" class="h-9 w-auto object-contain filter drop-shadow-[0_0_6px_rgba(0,240,255,0.5)]" onerror="this.src='Logo_безфона.png'">
+        <div class="text-left leading-tight">
+          <span class="font-sans font-bold text-white text-base">IT Life</span>
+          <p class="text-slate-400 text-[11px]">Технологическая экосистема веб-разработки и CRM-решений</p>
         </div>
       </div>
 
       <!-- Копирайт -->
-      <div>
+      <div class="font-mono text-[11px]">
         © 2026 IT Life. Все права защищены.
       </div>
 
-      <!-- Зонтичный бренд -->
-      <div class="flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-white/[0.03] border border-it-cyan/30 hover:border-it-cyan/60 transition group">
-        <div class="w-2 h-2 rounded-full bg-it-cyan animate-pulse"></div>
-        <div class="text-left leading-snug">
-          <div class="text-slate-400 text-[11px] font-medium tracking-wide">
+      <!-- ЗОНТИЧНЫЙ БРЕНД С НЕОНОВЫМ ИНДИКАТОРОМ -->
+      <div class="flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-white/[0.03] border border-cyan-500/30 hover:border-cyan-500/60 transition group">
+        <div class="w-2.5 h-2.5 rounded-full bg-cyber-cyan animate-pulse"></div>
+        <div class="text-left leading-snug font-mono">
+          <div class="text-slate-400 text-[11px] font-medium tracking-wide font-sans">
             Разработано <span class="text-white font-bold tracking-wider">IT Life</span>
           </div>
-          <div class="text-[10px] font-mono tracking-widest text-slate-500 uppercase">
-            a <span class="text-it-cyan font-semibold">PAVLIKneMOROZOFF</span> company
+          <div class="text-[10px] tracking-widest text-slate-500 uppercase">
+            a <span class="text-cyber-cyan font-bold">PAVLIKneMOROZOFF</span> company
           </div>
         </div>
       </div>
@@ -403,16 +501,73 @@
     </div>
   </footer>
 
-  <!-- СУПЕР-ПРИПОДНЯТАЯ КНОПКА «НАВЕРХ» (С АВТО-ОТСТУПОМ) -->
-  <button id="back-to-top" aria-label="Подняться вверх" class="fixed bottom-36 sm:bottom-44 right-5 sm:right-6 z-50 p-3 sm:p-3.5 rounded-full bg-it-card/95 text-it-cyan border border-it-cyan/50 shadow-2xl shadow-black hover:bg-it-cyan hover:text-black transition-all duration-300 transform opacity-0 translate-y-10 pointer-events-none group hover:scale-110">
-    <i data-lucide="chevron-up" class="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]"></i>
+  <!-- 9. ПРИПОДНЯТАЯ КНОПКА «НАВЕРХ» С ЗАЩИТОЙ ОТ НАЛОЖЕНИЯ -->
+  <button id="back-to-top" aria-label="Подняться вверх" class="fixed bottom-36 sm:bottom-44 right-5 sm:right-6 z-50 p-3.5 rounded-full bg-cyber-card text-cyber-cyan border border-cyan-500/50 shadow-2xl shadow-cyan-500/20 hover:bg-cyber-cyan hover:text-black transition-all duration-300 transform opacity-0 translate-y-10 pointer-events-none group hover:scale-110">
+    <i data-lucide="chevron-up" class="w-5 h-5 stroke-[2.5]"></i>
   </button>
 
-  <!-- СКРИПТЫ -->
+  <!-- СКРИПТЫ: CANVAS ЧАСТИЦ + КАЛЬКУЛЯТОР + УМНЫЙ СКРОЛЛ -->
   <script>
     lucide.createIcons();
 
-    // 1. Кнопка «Наверх» с защитой от наложения на подвал
+    // 1. ЖИВОЙ ФОНОВЫЙ ХОЛСТ С ЧАСТИЦАМИ И СЕТЬЮ (CYBER CANVAS)
+    const canvas = document.getElementById('cyber-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    const particleCount = Math.min(Math.floor(window.innerWidth / 20), 60);
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        radius: Math.random() * 1.5 + 1
+      });
+    }
+
+    function renderCanvas() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 240, 255, 0.6)';
+        ctx.fill();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 130) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(0, 240, 255, ${0.15 * (1 - dist / 130)})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(renderCanvas);
+    }
+    renderCanvas();
+
+    // 2. УМНАЯ КНОПКА «НАВЕРХ»
     const backToTopBtn = document.getElementById('back-to-top');
     const footerSection = document.getElementById('footer-section');
 
@@ -429,7 +584,7 @@
         const footerRect = footerSection.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         if (footerRect.top < windowHeight) {
-          backToTopBtn.style.bottom = `${(windowHeight - footerRect.top) + 20}px`;
+          backToTopBtn.style.bottom = `${(windowHeight - footerRect.top) + 24}px`;
         } else {
           backToTopBtn.style.bottom = '';
         }
@@ -437,16 +592,53 @@
     });
 
     backToTopBtn.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // 2. Обработка формы
-    function handleContactSubmit(e) {
+    // 3. ИНТЕРАКТИВНЫЙ КАЛЬКУЛЯТОР
+    let needCrm = true;
+    const calcPages = document.getElementById('calc-pages');
+    const calcPagesVal = document.getElementById('calc-pages-val');
+    const calcDays = document.getElementById('calc-days');
+    const calcSaved = document.getElementById('calc-saved');
+
+    function setCrmOption(val) {
+      needCrm = val;
+      const yesBtn = document.getElementById('crm-yes');
+      const noBtn = document.getElementById('crm-no');
+      if (needCrm) {
+        yesBtn.className = "py-3 rounded-xl border border-cyan-400 bg-cyan-500/20 text-white font-mono text-xs font-bold transition";
+        noBtn.className = "py-3 rounded-xl border border-white/10 bg-white/5 text-slate-400 font-mono text-xs font-bold transition";
+      } else {
+        noBtn.className = "py-3 rounded-xl border border-cyan-400 bg-cyan-500/20 text-white font-mono text-xs font-bold transition";
+        yesBtn.className = "py-3 rounded-xl border border-white/10 bg-white/5 text-slate-400 font-mono text-xs font-bold transition";
+      }
+      updateCalc();
+    }
+
+    function updateCalc() {
+      const p = parseInt(calcPages.value);
+      calcPagesVal.textContent = `${p} ${p === 1 ? 'страница' : p < 5 ? 'страницы' : 'страниц'}`;
+
+      let daysMin = Math.round(p * 1.5);
+      let daysMax = Math.round(p * 2.2);
+      if (needCrm) {
+        daysMin += 6;
+        daysMax += 8;
+      }
+      calcDays.textContent = `${daysMin}–${daysMax} раб. дней`;
+
+      let baseSaved = needCrm ? 360000 : 120000;
+      baseSaved += p * 20000;
+      calcSaved.textContent = `от ${baseSaved.toLocaleString('ru-RU')} ₸ / год`;
+    }
+
+    calcPages.addEventListener('input', updateCalc);
+
+    // 4. ОБРАБОТКА ФОРМЫ ЛИДА
+    function handleLeadSubmit(e) {
       e.preventDefault();
-      alert('Заявка принята! Инженер IT Life свяжется с вами в течение 15 минут.');
+      alert('Запрос принят в ядро IT Life! Инженер свяжется с вами для уточнения архитектуры.');
     }
   </script>
 </body>
