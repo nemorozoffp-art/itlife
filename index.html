@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Компетенции &amp; Сертификаты | IT Life — a PAVLIKneMOROZOFF company</title>
+  <title>IT Life | Digital Architecture, Cloud Systems &amp; CRM Engineering</title>
   
+  <!-- Иконка во вкладке браузера (Favicon) -->
   <link rel="icon" type="image/svg+xml" href="logo.svg">
   <link rel="alternate icon" href="logo.svg">
 
+  <!-- Tailwind CSS & Lucide Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,23 +69,34 @@
       box-shadow: 0 12px 40px 0 rgba(0, 240, 255, 0.22);
       transform: translateY(-4px);
     }
+    .glow-orb-cyan { background: radial-gradient(circle, rgba(0,240,255,0.2) 0%, rgba(0,0,0,0) 70%); }
+    .glow-orb-purple { background: radial-gradient(circle, rgba(168,85,247,0.2) 0%, rgba(0,0,0,0) 70%); }
   </style>
 </head>
 <body class="bg-cyber-void text-slate-100 font-sans antialiased selection:bg-cyber-cyan selection:text-black relative overflow-x-hidden">
+
+  <!-- ЖИВОЙ CANVAS -->
+  <canvas id="cyber-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+  <div class="fixed -top-40 -left-40 w-[600px] h-[600px] glow-orb-cyan blur-3xl pointer-events-none z-0"></div>
+  <div class="fixed top-1/2 -right-40 w-[650px] h-[650px] glow-orb-purple blur-3xl pointer-events-none z-0"></div>
 
   <!-- ВЕРХНИЙ БАР -->
   <aside aria-label="Системный мониторинг" class="relative z-40 bg-black/70 border-b border-cyan-500/20 py-2 px-4 backdrop-blur-xl text-xs font-mono">
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
       <div class="flex items-center gap-3">
         <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyber-cyan border border-cyan-500/30 text-[11px] font-bold">
-          <span class="w-2 h-2 rounded-full bg-cyber-cyan animate-pulse"></span> CERTIFIED ENGINE
+          <span class="w-2 h-2 rounded-full bg-cyber-cyan animate-ping"></span> PRODUCTION CLUSTER
         </span>
-        <span class="text-slate-400 text-[11px]">Статус: <strong class="text-emerald-400">Верифицированный партнер</strong></span>
+        <span class="hidden sm:inline text-slate-400 text-[11px]">Bitrix Core: <strong class="text-white">Migrated</strong></span>
+        <span class="hidden sm:inline text-slate-600">|</span>
+        <span class="hidden sm:inline text-slate-400 text-[11px]">Database Engine: <strong class="text-cyber-cyan">Independent REST API</strong></span>
       </div>
       <div class="flex items-center gap-4 text-slate-300 text-[11px]">
-        <span class="text-slate-400">Специалист: <strong class="text-white">Павел Захаров</strong></span>
+        <span class="text-slate-400">Arch: <span class="text-white font-semibold">Modular Full-Stack</span></span>
         <span class="text-slate-600">|</span>
-        <span class="text-cyber-cyan font-bold">IT Life Quality Standard</span>
+        <a href="competencies.html" class="text-cyber-cyan hover:underline font-bold flex items-center gap-1">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-cyber-cyan"></i> Verified Partner
+        </a>
       </div>
     </div>
   </aside>
@@ -92,6 +105,7 @@
   <header class="sticky top-0 z-40 bg-cyber-void/85 backdrop-blur-2xl border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
       
+      <!-- Логотип -->
       <a href="index.html" class="flex items-center gap-3.5 group">
         <div class="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-slate-900/90 border border-cyan-500/35 p-1 flex items-center justify-center shadow-lg shadow-cyan-500/15 group-hover:border-cyan-400 group-hover:shadow-cyan-500/35 transition-all duration-300">
           <img src="logo.svg" alt="IT Life Logo" class="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(0,240,255,0.7)] group-hover:scale-105 transition-transform" onerror="this.src='logo.png'">
@@ -105,23 +119,25 @@
         </div>
       </a>
 
+      <!-- Меню: ссылка теперь точно ведет на competencies.html -->
       <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300">
-        <a href="index.html" class="hover:text-cyber-cyan transition flex items-center gap-1.5">
-          <i data-lucide="home" class="w-4 h-4"></i> Главная
-        </a>
-        <a href="index.html#solutions" class="hover:text-cyber-cyan transition flex items-center gap-1.5">
+        <a href="#solutions" class="hover:text-cyber-cyan transition flex items-center gap-1.5">
           <i data-lucide="sparkles" class="w-4 h-4 text-cyber-cyan"></i> Решения
         </a>
-        <a href="competencies.html" class="text-cyber-cyan transition flex items-center gap-1.5 font-bold">
+        <a href="#playground" class="hover:text-cyber-cyan transition flex items-center gap-1.5">
+          <i data-lucide="terminal" class="w-4 h-4 text-purple-400"></i> Архитектура &amp; Код
+        </a>
+        <a href="competencies.html" class="hover:text-cyber-cyan transition flex items-center gap-1.5 font-bold text-white bg-white/5 px-3 py-1.5 rounded-xl border border-white/10 hover:border-cyan-400">
           <i data-lucide="award" class="w-4 h-4 text-emerald-400"></i> Сертификация
         </a>
-        <a href="index.html#calculator" class="hover:text-cyber-cyan transition flex items-center gap-1.5">
+        <a href="#calculator" class="hover:text-cyber-cyan transition flex items-center gap-1.5">
           <i data-lucide="calculator" class="w-4 h-4 text-pink-400"></i> Калькулятор стека
         </a>
       </nav>
 
+      <!-- Кнопка заявки -->
       <div class="flex items-center gap-3">
-        <a href="index.html#contacts" class="relative group overflow-hidden px-5 py-2.5 rounded-xl font-mono text-xs uppercase font-bold tracking-wider text-black bg-gradient-to-r from-cyber-cyan via-blue-400 to-purple-400 shadow-lg shadow-cyan-500/25 hover:scale-105 transition-all">
+        <a href="#contacts" class="relative group overflow-hidden px-5 py-2.5 sm:px-6 sm:py-2.5 rounded-xl font-mono text-xs uppercase font-bold tracking-wider text-black bg-gradient-to-r from-cyber-cyan via-blue-400 to-purple-400 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/50 hover:scale-105 transition-all">
           <span class="relative z-10 flex items-center gap-1.5">
             <i data-lucide="send" class="w-3.5 h-3.5"></i> Запустить проект
           </span>
@@ -130,215 +146,85 @@
     </div>
   </header>
 
-  <!-- ЗАГОЛОВОК -->
-  <section class="relative z-10 pt-16 sm:pt-20 pb-8 px-4 text-center">
-    <div class="max-w-4xl mx-auto">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/40 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 text-cyber-cyan text-xs font-mono font-bold mb-6">
-        <i data-lucide="shield-check" class="w-4 h-4"></i>
-        <span>Аттестованные стандарты разработки и системного администрирования</span>
-      </div>
-
-      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6">
-        Официальные <span class="holo-gradient">Сертификаты</span><br>
-        и Технические Компетенции
-      </h1>
-
-      <p class="text-base sm:text-lg text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
-        Все проекты компании IT Life создаются под контролем сертифицированных специалистов с многолетним стажем работы в архитектуре сложных веб-платформ и баз данных.
-      </p>
-      
-      <p class="mt-4 text-xs font-mono text-cyan-400">
-        💡 Нажмите на любой сертификат, чтобы открыть детальный просмотр в полном размере
-      </p>
-    </div>
-  </section>
-
-  <!-- ГАЛЕРЕЯ КАРТОЧЕК С ГАРАНТИРОВАННЫМ ЗУМОМ -->
-  <section class="relative z-10 py-8 px-4">
+  <!-- HERO -->
+  <section class="relative z-10 pt-16 sm:pt-24 pb-20 px-4">
     <div class="max-w-7xl mx-auto">
-      <div id="certs-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-
-        <!-- 1 -->
-        <div class="cert-card glass-panel rounded-2xl p-5 flex flex-col justify-between cursor-pointer group" onclick="showCert('Администратор. Базовый', '1С-Битрикс: Управление сайтом', 'Сертификат подтверждает квалификацию в области управления правами пользователей, структурой инфоблоков, кэшированием, защитой и резервным копированием.', '#00F0FF', 'CERT-ADMIN-BASE')">
-          <div>
-            <div class="w-full aspect-[4/3] rounded-xl mb-4 bg-gradient-to-br from-cyan-950/60 to-black border border-cyan-500/30 p-4 flex flex-col justify-between relative overflow-hidden group-hover:border-cyan-400 transition">
-              <div class="flex justify-between items-start">
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-400 font-bold">1С-БИТРИКС</span>
-                <i data-lucide="award" class="w-6 h-6 text-cyan-400"></i>
-              </div>
-              <div>
-                <div class="text-[11px] font-mono text-slate-400">СЕРТИФИКАТ</div>
-                <div class="text-base font-bold text-white">Администратор. Базовый</div>
-              </div>
-              <div class="text-[9px] font-mono text-slate-500">Владелец: Павел Захаров</div>
-            </div>
-            <h3 class="font-bold text-white text-base mb-1">Администратор. Базовый</h3>
-            <p class="text-slate-400 text-xs">Контроль архитектуры безопасности, учетных записей и резервного копирования.</p>
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/40 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 text-cyber-cyan text-xs font-mono font-bold mb-6">
+            <i data-lucide="cpu" class="w-4 h-4"></i>
+            <span>Архитектура без абонентской платы Битрикс24</span>
           </div>
-          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-cyan-400">
-            <span>Открыть просмотр</span>
-            <i data-lucide="zoom-in" class="w-4 h-4"></i>
+
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6">
+            Разрабатываем <br>
+            <span class="holo-gradient">Автономные Сайты</span><br>
+            и Собственные CRM
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-300 font-normal leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
+            Переводим компании с громоздких систем на сверхбыстрый независимый стек. Полный контроль над данными, открытый REST API, прямые интеграции с WhatsApp и Telegram без ограничений тарифов.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a href="#contacts" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-gradient-to-r from-cyber-cyan to-blue-500 text-black shadow-xl shadow-cyan-500/30 hover:scale-105 transition-all text-sm uppercase tracking-wider font-mono flex items-center justify-center gap-2">
+              <i data-lucide="zap" class="w-4 h-4 fill-current"></i> Начать трансформацию
+            </a>
+            <a href="competencies.html" class="w-full sm:w-auto px-7 py-4 rounded-xl font-semibold border border-white/20 bg-white/5 hover:bg-white/10 hover:border-cyber-cyan transition-all text-sm flex items-center justify-center gap-2 font-mono">
+              <i data-lucide="award" class="w-4 h-4 text-emerald-400"></i> Галерея сертификатов
+            </a>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4 mt-12 pt-8 border-t border-white/10 font-mono">
+            <div>
+              <div class="text-2xl sm:text-3xl font-extrabold text-cyber-cyan">99+</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">Google PageSpeed</div>
+            </div>
+            <div>
+              <div class="text-2xl sm:text-3xl font-extrabold text-purple-400">0 ₸</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">Ежемесячная аренда CRM</div>
+            </div>
+            <div>
+              <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400">&lt;50ms</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">Отправка лида в базу</div>
+            </div>
           </div>
         </div>
 
-        <!-- 2 -->
-        <div class="cert-card glass-panel rounded-2xl p-5 flex flex-col justify-between cursor-pointer group" onclick="showCert('Администратор. Модули', '1С-Битрикс: Управление сайтом', 'Сертификат подтверждает навыки интеграции сложных интернет-решений: торговых каталогов, корзины, платежных систем, валют и почтовых уведомлений.', '#3B82F6', 'CERT-ADMIN-MOD')">
-          <div>
-            <div class="w-full aspect-[4/3] rounded-xl mb-4 bg-gradient-to-br from-blue-950/60 to-black border border-blue-500/30 p-4 flex flex-col justify-between relative overflow-hidden group-hover:border-blue-400 transition">
-              <div class="flex justify-between items-start">
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 font-bold">1С-БИТРИКС</span>
-                <i data-lucide="layers" class="w-6 h-6 text-blue-400"></i>
+        <div class="lg:col-span-5">
+          <div class="relative glass-panel rounded-3xl p-5 border border-cyan-500/40 shadow-2xl overflow-hidden">
+            <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                <span class="ml-2 text-xs font-mono text-slate-400">it-life-engine.js</span>
               </div>
-              <div>
-                <div class="text-[11px] font-mono text-slate-400">СЕРТИФИКАТ</div>
-                <div class="text-base font-bold text-white">Администратор. Модули</div>
-              </div>
-              <div class="text-[9px] font-mono text-slate-500">Владелец: Павел Захаров</div>
+              <span class="px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyber-cyan font-mono text-[10px] font-bold">ONLINE</span>
             </div>
-            <h3 class="font-bold text-white text-base mb-1">Администратор. Модули</h3>
-            <p class="text-slate-400 text-xs">Интеграция торговых каталогов, веб-форм и сложных модулей обмена данными.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-blue-400">
-            <span>Открыть просмотр</span>
-            <i data-lucide="zoom-in" class="w-4 h-4"></i>
-          </div>
-        </div>
 
-        <!-- 3 -->
-        <div class="cert-card glass-panel rounded-2xl p-5 flex flex-col justify-between cursor-pointer group" onclick="showCert('Установка и настройка системы', '1С-Битрикс: Платформа', 'Квалификация по развертыванию серверного стека Linux (Nginx, PHP, MySQL), тюнингу производительности, SSL и переносу сайтов.', '#A855F7', 'CERT-SYS-SETUP')">
-          <div>
-            <div class="w-full aspect-[4/3] rounded-xl mb-4 bg-gradient-to-br from-purple-950/60 to-black border border-purple-500/30 p-4 flex flex-col justify-between relative overflow-hidden group-hover:border-purple-400 transition">
-              <div class="flex justify-between items-start">
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 font-bold">1С-БИТРИКС</span>
-                <i data-lucide="server" class="w-6 h-6 text-purple-400"></i>
-              </div>
-              <div>
-                <div class="text-[11px] font-mono text-slate-400">СЕРТИФИКАТ</div>
-                <div class="text-base font-bold text-white">Установка и настройка</div>
-              </div>
-              <div class="text-[9px] font-mono text-slate-500">Владелец: Павел Захаров</div>
-            </div>
-            <h3 class="font-bold text-white text-base mb-1">Установка и настройка</h3>
-            <p class="text-slate-400 text-xs">Конфигурация серверов, оптимизация PHP окружения и параметров баз данных.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-purple-400">
-            <span>Открыть просмотр</span>
-            <i data-lucide="zoom-in" class="w-4 h-4"></i>
-          </div>
-        </div>
+            <pre class="font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto p-3 bg-black/50 rounded-xl border border-white/5"><code><span class="text-purple-400">// Direct CRM Ingestion</span>
+<span class="text-blue-400">async function</span> <span class="text-cyber-cyan">dispatchLead</span>(client) {
+  <span class="text-slate-500">const</span> payload = {
+    source: <span class="text-emerald-300">"IT Life Custom Core"</span>,
+    client: client.phone,
+    timestamp: Date.now()
+  };
+  <span class="text-purple-400">await</span> fetch(<span class="text-yellow-300">"/api/v1/crm/lead"</span>, {
+    method: <span class="text-emerald-300">"POST"</span>,
+    body: JSON.stringify(payload)
+  });
+  <span class="text-blue-400">return</span> <span class="text-cyan-400">{ status: 200, bitrixTax: 0 }</span>;
+}</code></pre>
 
-        <!-- 4 -->
-        <div class="cert-card glass-panel rounded-2xl p-5 flex flex-col justify-between cursor-pointer group" onclick="showCert('Контент-менеджер', '1С-Битрикс: Контент & SEO', 'Квалификация в области профессионального структурирования контента, SEO мета-данных, оптимизации изображений и ускорения загрузки.', '#10B981', 'CERT-CONTENT-PRO')">
-          <div>
-            <div class="w-full aspect-[4/3] rounded-xl mb-4 bg-gradient-to-br from-emerald-950/60 to-black border border-emerald-500/30 p-4 flex flex-col justify-between relative overflow-hidden group-hover:border-emerald-400 transition">
-              <div class="flex justify-between items-start">
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">1С-БИТРИКС</span>
-                <i data-lucide="file-text" class="w-6 h-6 text-emerald-400"></i>
+            <div class="mt-4 p-3 rounded-xl bg-gradient-to-r from-cyan-950/30 to-purple-950/30 border border-cyan-500/20 flex items-center justify-between text-xs font-mono">
+              <div class="flex items-center gap-2 text-slate-300">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+                <span>Интеграция CRM активна</span>
               </div>
-              <div>
-                <div class="text-[11px] font-mono text-slate-400">СЕРТИФИКАТ</div>
-                <div class="text-base font-bold text-white">Контент-менеджер</div>
-              </div>
-              <div class="text-[9px] font-mono text-slate-500">Владелец: Павел Захаров</div>
+              <span class="text-cyber-cyan font-bold">Latency: 12ms</span>
             </div>
-            <h3 class="font-bold text-white text-base mb-1">Контент-менеджер</h3>
-            <p class="text-slate-400 text-xs">Структура страниц, SEO-оптимизация и высокоэффективное размещение данных.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-emerald-400">
-            <span>Открыть просмотр</span>
-            <i data-lucide="zoom-in" class="w-4 h-4"></i>
-          </div>
-        </div>
-
-        <!-- 5 -->
-        <div class="cert-card glass-panel rounded-2xl p-5 flex flex-col justify-between cursor-pointer group" onclick="showCert('Сертификат Партнера 1С-Битрикс', 'Официальная партнерская сеть', 'Официальный сертификат участника партнерской программы 1С-Битрикс. Подтверждает право разработки, внедрения и обслуживания решений.', '#EC4899', 'PARTNER-BITRIX-NET')">
-          <div>
-            <div class="w-full aspect-[4/3] rounded-xl mb-4 bg-gradient-to-br from-pink-950/60 to-black border border-pink-500/30 p-4 flex flex-col justify-between relative overflow-hidden group-hover:border-pink-400 transition">
-              <div class="flex justify-between items-start">
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 font-bold">ПАРТНЕР</span>
-                <i data-lucide="briefcase" class="w-6 h-6 text-pink-400"></i>
-              </div>
-              <div>
-                <div class="text-[11px] font-mono text-slate-400">СЕРТИФИКАТ ПАРТНЕРА</div>
-                <div class="text-base font-bold text-white">1С-Битрикс Партнер</div>
-              </div>
-              <div class="text-[9px] font-mono text-slate-500">Компания: IT Life</div>
-            </div>
-            <h3 class="font-bold text-white text-base mb-1">Сертификат Партнера</h3>
-            <p class="text-slate-400 text-xs">Подтвержденный статус участника официальной партнерской сети внедрения систем.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-pink-400">
-            <span>Открыть просмотр</span>
-            <i data-lucide="zoom-in" class="w-4 h-4"></i>
-          </div>
-        </div>
-
-        <!-- 6 -->
-        <div class="cert-card glass-panel rounded-2xl p-5 flex flex-col justify-between cursor-pointer group" onclick="showCert('Аккредитация решений', 'Партнерский статус', 'Аккредитация внедрения корпоративных продуктов, интеграций и кастомных модулей для крупного бизнеса.', '#EC4899', 'PARTNER-CORP-SOL')">
-          <div>
-            <div class="w-full aspect-[4/3] rounded-xl mb-4 bg-gradient-to-br from-pink-950/60 to-black border border-pink-500/30 p-4 flex flex-col justify-between relative overflow-hidden group-hover:border-pink-400 transition">
-              <div class="flex justify-between items-start">
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 font-bold">АККРЕДИТАЦИЯ</span>
-                <i data-lucide="shield-check" class="w-6 h-6 text-pink-400"></i>
-              </div>
-              <div>
-                <div class="text-[11px] font-mono text-slate-400">АККРЕДИТАЦИЯ</div>
-                <div class="text-base font-bold text-white">Корпоративные решения</div>
-              </div>
-              <div class="text-[9px] font-mono text-slate-500">Компания: IT Life</div>
-            </div>
-            <h3 class="font-bold text-white text-base mb-1">Аккредитация решений</h3>
-            <p class="text-slate-400 text-xs">Подтверждение стандартов разработки и качества внедряемого софта.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-pink-400">
-            <span>Открыть просмотр</span>
-            <i data-lucide="zoom-in" class="w-4 h-4"></i>
-          </div>
-        </div>
-
-        <!-- 7 -->
-        <div class="cert-card glass-panel rounded-2xl p-5 flex flex-col justify-between cursor-pointer group" onclick="showCert('Структура каталогов и фасеты', 'E-Commerce архитектура', 'Разработка сложных товарных матриц, свойств, фасетной фильтрации и автоматических связок данных.', '#00F0FF', 'CERT-ECOMMERCE-DATA')">
-          <div>
-            <div class="w-full aspect-[4/3] rounded-xl mb-4 bg-gradient-to-br from-cyan-950/60 to-black border border-cyan-500/30 p-4 flex flex-col justify-between relative overflow-hidden group-hover:border-cyan-400 transition">
-              <div class="flex justify-between items-start">
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-400 font-bold">E-COMMERCE</span>
-                <i data-lucide="database" class="w-6 h-6 text-cyan-400"></i>
-              </div>
-              <div>
-                <div class="text-[11px] font-mono text-slate-400">АРХИТЕКТУРА</div>
-                <div class="text-base font-bold text-white">Структура каталогов</div>
-              </div>
-              <div class="text-[9px] font-mono text-slate-500">Владелец: Павел Захаров</div>
-            </div>
-            <h3 class="font-bold text-white text-base mb-1">Структура каталогов</h3>
-            <p class="text-slate-400 text-xs">Проектирование иерархий данных, фасетных индексов и фильтров.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-cyan-400">
-            <span>Открыть просмотр</span>
-            <i data-lucide="zoom-in" class="w-4 h-4"></i>
-          </div>
-        </div>
-
-        <!-- 8 -->
-        <div class="cert-card glass-panel rounded-2xl p-5 flex flex-col justify-between cursor-pointer group" onclick="showCert('Интеграционные веб-формы', 'Лидогенерация & CRM', 'Организация сбора обратной связи, защищенных полей ввода, вебхуков и антиспам-фильтров.', '#3B82F6', 'CERT-WEB-FORMS')">
-          <div>
-            <div class="w-full aspect-[4/3] rounded-xl mb-4 bg-gradient-to-br from-blue-950/60 to-black border border-blue-500/30 p-4 flex flex-col justify-between relative overflow-hidden group-hover:border-blue-400 transition">
-              <div class="flex justify-between items-start">
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 font-bold">CRM &amp; API</span>
-                <i data-lucide="send" class="w-6 h-6 text-blue-400"></i>
-              </div>
-              <div>
-                <div class="text-[11px] font-mono text-slate-400">ИНТЕГРАЦИИ</div>
-                <div class="text-base font-bold text-white">Веб-формы и лиды</div>
-              </div>
-              <div class="text-[9px] font-mono text-slate-500">Владелец: Павел Захаров</div>
-            </div>
-            <h3 class="font-bold text-white text-base mb-1">Интеграционные формы</h3>
-            <p class="text-slate-400 text-xs">Разработка потоков захвата лидов, валидации данных и безопасной передачи.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-blue-400">
-            <span>Открыть просмотр</span>
-            <i data-lucide="zoom-in" class="w-4 h-4"></i>
           </div>
         </div>
 
@@ -346,52 +232,95 @@
     </div>
   </section>
 
-  <!-- МОДАЛЬНОЕ ОКНО ПРОСМОТРА НА ВЕСЬ ЭКРАН -->
-  <div id="modal-container" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-2xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
-    <div class="relative max-w-3xl w-full glass-panel rounded-3xl p-6 sm:p-8 border border-cyan-400/50 shadow-2xl">
-      
-      <!-- Крестик закрытия -->
-      <button onclick="hideCert()" class="absolute -top-3 -right-3 p-3 rounded-full bg-cyan-400 text-black hover:scale-110 transition shadow-xl z-20 cursor-pointer" aria-label="Закрыть">
-        <i data-lucide="x" class="w-5 h-5 stroke-[2.5]"></i>
-      </button>
-
-      <!-- Документ в рамке -->
-      <div class="p-6 rounded-2xl bg-gradient-to-br from-slate-950 to-slate-900 border border-white/10 text-center relative overflow-hidden mb-6">
-        <div class="flex justify-between items-center pb-4 border-b border-white/10 text-xs font-mono">
-          <span id="modal-code" class="text-cyan-400 font-bold">CERT-CODE</span>
-          <span class="text-emerald-400 flex items-center gap-1"><i data-lucide="shield-check" class="w-4 h-4"></i> ОФИЦИАЛЬНО ВЕРИФИЦИРОВАНО</span>
-        </div>
-
-        <div class="py-8">
-          <div class="w-16 h-16 mx-auto rounded-full bg-cyan-500/10 border border-cyan-400 flex items-center justify-center mb-4 text-cyan-400 shadow-lg shadow-cyan-500/20">
-            <i data-lucide="award" class="w-8 h-8"></i>
-          </div>
-          <h2 id="modal-title" class="text-2xl sm:text-3xl font-extrabold text-white mb-2">Название сертификата</h2>
-          <p id="modal-org" class="text-sm font-mono text-cyan-400 uppercase tracking-widest mb-4">1С-Битрикс: Платформа</p>
-          <div class="w-24 h-0.5 mx-auto bg-gradient-to-r from-cyan-400 to-purple-500 mb-4"></div>
-          <p class="text-xs font-mono text-slate-400">Настоящий сертификат выдан:</p>
-          <p class="text-lg font-bold text-white font-mono mt-1">Павел Захаров</p>
-        </div>
-
-        <div class="pt-4 border-t border-white/10 flex justify-between text-[11px] font-mono text-slate-500">
-          <span>Компания: IT Life (a PAVLIKneMOROZOFF company)</span>
-          <span>Статус: Действителен</span>
-        </div>
-      </div>
-
-      <!-- Описание квалификации -->
-      <div class="space-y-4">
+  <!-- СЕКЦИЯ КОМПЕТЕНЦИЙ (КЛИК ПЕРЕХОДИТ В ГАЛЕРЕЮ) -->
+  <section id="competencies" class="relative z-10 py-20 px-4 bg-cyber-base/60 border-t border-white/10">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
         <div>
-          <h4 class="text-xs font-mono text-slate-400 uppercase tracking-wider mb-1">Квалификационные компетенции:</h4>
-          <p id="modal-desc" class="text-sm text-slate-200 leading-relaxed">Описание...</p>
+          <span class="text-cyber-cyan text-xs font-mono uppercase tracking-widest font-semibold">Официальная аккредитация</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-title mt-1">Инженерный багаж &amp; Сертификаты</h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-1">Нажмите на любой блок, чтобы открыть подробную галерею документов</p>
         </div>
-        <button onclick="hideCert()" class="w-full py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-mono text-xs uppercase font-bold tracking-wider transition">
-          Закрыть просмотр
-        </button>
+        <a href="competencies.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/10 border border-cyan-400 text-cyber-cyan font-mono text-xs font-bold hover:bg-cyan-500 hover:text-black transition">
+          <span>Открыть всю галерею (8 документов)</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
       </div>
 
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <a href="competencies.html" class="glass-panel p-6 rounded-2xl border-cyan-500/20 hover:border-cyan-400 block group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyber-cyan">CERTIFIED</span>
+            <i data-lucide="external-link" class="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition"></i>
+          </div>
+          <h4 class="font-bold text-white text-base mb-1 group-hover:text-cyan-300 transition">Установка и настройка</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">Развертывание веб-серверов, окружения, баз данных и системных требований.</p>
+        </a>
+
+        <a href="competencies.html" class="glass-panel p-6 rounded-2xl border-cyan-500/20 hover:border-cyan-400 block group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/20 text-blue-400">CERTIFIED</span>
+            <i data-lucide="external-link" class="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition"></i>
+          </div>
+          <h4 class="font-bold text-white text-base mb-1 group-hover:text-cyan-300 transition">Администратор. Базовый</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">Безопасность учетных записей, права доступа, инфоблоки и структуры каталогов.</p>
+        </a>
+
+        <a href="competencies.html" class="glass-panel p-6 rounded-2xl border-cyan-500/20 hover:border-cyan-400 block group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/20 text-purple-400">CERTIFIED</span>
+            <i data-lucide="external-link" class="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition"></i>
+          </div>
+          <h4 class="font-bold text-white text-base mb-1 group-hover:text-cyan-300 transition">Администратор. Модули</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">Сложные компоненты, электронная коммерция, веб-формы и интеграционные потоки.</p>
+        </a>
+
+        <a href="competencies.html" class="glass-panel p-6 rounded-2xl border-cyan-500/20 hover:border-cyan-400 block group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400">PARTNER</span>
+            <i data-lucide="external-link" class="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition"></i>
+          </div>
+          <h4 class="font-bold text-white text-base mb-1 group-hover:text-cyan-300 transition">Партнерская программа</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">Официальный опыт проектного взаимодействия и внедрения корпоративных платформ.</p>
+        </a>
+
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- ФОРМА СВЯЗИ -->
+  <section id="contacts" class="relative z-10 py-20 px-4">
+    <div class="max-w-4xl mx-auto glass-panel p-8 sm:p-12 rounded-3xl border border-cyan-500/40">
+      <div class="text-center mb-10">
+        <span class="text-cyber-cyan text-xs font-mono uppercase tracking-widest font-semibold">Связь с разработчиком</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-title mt-2">Готовы обсудить архитектуру?</h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-2">Заполните поля — заявка поступит напрямую к инженеру IT Life.</p>
+      </div>
+
+      <form onsubmit="handleLeadSubmit(event)" class="space-y-4 font-mono">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-slate-300 mb-1">Имя / Компания</label>
+            <input type="text" required placeholder="Павел" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/10 text-white focus:outline-none focus:border-cyber-cyan text-xs">
+          </div>
+          <div>
+            <label class="block text-xs text-slate-300 mb-1">Телефон / Telegram / WA</label>
+            <input type="text" required placeholder="+7 (___) ___-__-__" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/10 text-white focus:outline-none focus:border-cyber-cyan text-xs">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs text-slate-300 mb-1">Краткое описание задачи</label>
+          <textarea rows="3" placeholder="Нужен корпоративный сайт, перенос с Битрикса или разработка собственной CRM..." class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/10 text-white focus:outline-none focus:border-cyber-cyan text-xs"></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-4 mt-2 rounded-xl font-bold bg-gradient-to-r from-cyber-cyan via-blue-500 to-purple-500 text-black text-xs uppercase tracking-wider shadow-xl shadow-cyan-500/25 hover:scale-[1.01] transition-all">
+          Отправить заявку в разработку
+        </button>
+      </form>
+    </div>
+  </section>
 
   <!-- ПОДВАЛ -->
   <footer id="footer-section" class="relative z-10 border-t border-white/10 bg-black/90 pt-12 pb-36 px-4 text-xs text-slate-500">
@@ -432,31 +361,59 @@
   <script>
     lucide.createIcons();
 
-    // Модальное окно
-    const modal = document.getElementById('modal-container');
-    const mTitle = document.getElementById('modal-title');
-    const mOrg = document.getElementById('modal-org');
-    const mDesc = document.getElementById('modal-desc');
-    const mCode = document.getElementById('modal-code');
+    // Canvas
+    const canvas = document.getElementById('cyber-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
 
-    function showCert(title, org, desc, color, code) {
-      mTitle.textContent = title;
-      mOrg.textContent = org;
-      mDesc.textContent = desc;
-      mCode.textContent = code;
-
-      modal.classList.remove('opacity-0', 'pointer-events-none');
-      modal.classList.add('opacity-100', 'pointer-events-auto');
-    }
-
-    function hideCert() {
-      modal.classList.remove('opacity-100', 'pointer-events-auto');
-      modal.classList.add('opacity-0', 'pointer-events-none');
-    }
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) hideCert();
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
     });
+
+    const particles = [];
+    const particleCount = Math.min(Math.floor(window.innerWidth / 20), 50);
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        radius: Math.random() * 1.5 + 1
+      });
+    }
+
+    function renderCanvas() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 240, 255, 0.6)';
+        ctx.fill();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 130) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(0, 240, 255, ${0.15 * (1 - dist / 130)})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(renderCanvas);
+    }
+    renderCanvas();
 
     // Scroll
     const backToTopBtn = document.getElementById('back-to-top');
@@ -485,6 +442,11 @@
     backToTopBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    function handleLeadSubmit(e) {
+      e.preventDefault();
+      alert('Запрос принят в ядро IT Life!');
+    }
   </script>
 </body>
 </html>
