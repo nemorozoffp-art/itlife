@@ -9,7 +9,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <script>
@@ -56,11 +56,11 @@
 
     /* Стеклянные неоновые карточки нового поколения */
     .glass-panel {
-      background: rgba(12, 19, 36, 0.65);
+      background: rgba(12, 19, 36, 0.7);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(0, 240, 255, 0.18);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .glass-panel:hover {
@@ -71,16 +71,16 @@
 
     /* Фоновые живые размытия */
     .glow-orb-cyan {
-      background: radial-gradient(circle, rgba(0,240,255,0.22) 0%, rgba(0,0,0,0) 70%);
+      background: radial-gradient(circle, rgba(0,240,255,0.2) 0%, rgba(0,0,0,0) 70%);
     }
     .glow-orb-purple {
-      background: radial-gradient(circle, rgba(168,85,247,0.22) 0%, rgba(0,0,0,0) 70%);
+      background: radial-gradient(circle, rgba(168,85,247,0.2) 0%, rgba(0,0,0,0) 70%);
     }
   </style>
 </head>
 <body class="bg-cyber-void text-slate-100 font-sans antialiased selection:bg-cyber-cyan selection:text-black relative overflow-x-hidden">
 
-  <!-- ЖИВОЙ ФОНОВЫЙ ХОЛСТ С ЧАСТИЦАМИ И СВЯЗЯМИ (CANVAS) -->
+  <!-- ЖИВОЙ ФОНОВЫЙ ХОЛСТ С ЧАСТИЦАМИ И СЕТЬЮ (CANVAS) -->
   <canvas id="cyber-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
 
   <!-- СВЕТОВЫЕ НЕОНОВЫЕ ПЯТНА НА ФОНЕ -->
@@ -108,18 +108,21 @@
     </div>
   </aside>
 
-  <!-- 2. ГЛАВНАЯ ШАПКА САЙТА -->
+  <!-- 2. ГЛАВНАЯ ШАПКА САЙТА С НОВЫМ СТАТУСНЫМ ЛОГОТИПОМ -->
   <header class="sticky top-0 z-40 bg-cyber-void/85 backdrop-blur-2xl border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
       
-      <!-- Логотип IT Life -->
+      <!-- Логотип IT Life (Статусный монолит) -->
       <a href="index.html" class="flex items-center gap-3.5 group">
-        <div class="relative p-2 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border border-cyan-500/40 group-hover:border-cyber-cyan transition-all duration-300">
-          <img src="logo.png" alt="IT Life Logo" class="h-9 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(0,240,255,0.7)] group-hover:scale-105 transition-transform" onerror="this.src='Logo_безфона.png'">
+        <div class="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-slate-900/90 border border-cyan-500/35 p-1 flex items-center justify-center shadow-lg shadow-cyan-500/15 group-hover:border-cyan-400 group-hover:shadow-cyan-500/35 transition-all duration-300">
+          <img src="logo.svg" alt="IT Life Logo" class="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(0,240,255,0.7)] group-hover:scale-105 transition-transform" onerror="this.src='logo.png'">
         </div>
         <div class="leading-tight">
-          <span class="block font-sans text-2xl font-extrabold tracking-wide text-white">IT <span class="holo-gradient">Life</span></span>
-          <span class="block text-[9px] font-mono tracking-widest text-slate-400 uppercase">a PAVLIKneMOROZOFF company</span>
+          <div class="flex items-center gap-2">
+            <span class="font-sans text-2xl font-black tracking-tight text-white">IT Life</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 uppercase tracking-wider">CORP</span>
+          </div>
+          <span class="block text-[9px] font-mono tracking-widest text-slate-400 uppercase mt-0.5">a PAVLIKneMOROZOFF company</span>
         </div>
       </a>
 
@@ -141,7 +144,7 @@
 
       <!-- Правая кнопка вызова -->
       <div class="flex items-center gap-3">
-        <a href="#contacts" class="relative group overflow-hidden px-6 py-2.5 rounded-xl font-mono text-xs uppercase font-bold tracking-wider text-black bg-gradient-to-r from-cyber-cyan via-blue-400 to-purple-400 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/50 hover:scale-105 transition-all">
+        <a href="#contacts" class="relative group overflow-hidden px-5 py-2.5 sm:px-6 sm:py-2.5 rounded-xl font-mono text-xs uppercase font-bold tracking-wider text-black bg-gradient-to-r from-cyber-cyan via-blue-400 to-purple-400 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/50 hover:scale-105 transition-all">
           <span class="relative z-10 flex items-center gap-1.5">
             <i data-lucide="send" class="w-3.5 h-3.5"></i> Запустить проект
           </span>
@@ -213,7 +216,7 @@
             </div>
 
             <!-- Кодовый блок -->
-            <pre class="font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto p-2 bg-black/40 rounded-xl border border-white/5"><code><span class="text-purple-400">// 1. Direct CRM Lead Ingestion</span>
+            <pre class="font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto p-3 bg-black/50 rounded-xl border border-white/5"><code><span class="text-purple-400">// 1. Direct CRM Lead Ingestion</span>
 <span class="text-blue-400">async function</span> <span class="text-cyber-cyan">dispatchLead</span>(client) {
   <span class="text-slate-500">const</span> payload = {
     source: <span class="text-emerald-300">"IT Life Custom Core"</span>,
@@ -473,7 +476,9 @@
       
       <!-- Логотип и миссия -->
       <div class="flex items-center gap-3.5">
-        <img src="logo.png" alt="IT Life" class="h-9 w-auto object-contain filter drop-shadow-[0_0_6px_rgba(0,240,255,0.5)]" onerror="this.src='Logo_безфона.png'">
+        <div class="relative w-10 h-10 rounded-xl bg-slate-900/90 border border-cyan-500/35 p-1 flex items-center justify-center shadow-lg shadow-cyan-500/10">
+          <img src="logo.svg" alt="IT Life" class="w-full h-full object-contain filter drop-shadow-[0_0_6px_rgba(0,240,255,0.5)]" onerror="this.src='logo.png'">
+        </div>
         <div class="text-left leading-tight">
           <span class="font-sans font-bold text-white text-base">IT Life</span>
           <p class="text-slate-400 text-[11px]">Технологическая экосистема веб-разработки и CRM-решений</p>
