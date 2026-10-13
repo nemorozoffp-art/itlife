@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Компетенции &amp; Сертификаты | IT Life — a PAVLIKneMOROZOFF company</title>
+  
+  <!-- Иконка во вкладке браузера (Favicon) -->
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="alternate icon" href="logo.svg">
+
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cyber: {
+              void: '#05070F',
+              base: '#080D1A',
+              card: 'rgba(13, 20, 38, 0.75)',
+              border: 'rgba(56, 189, 248, 0.25)',
+              cyan: '#00F0FF',
+              blue: '#3B82F6',
+              purple: '#A855F7',
+              pink: '#EC4899',
+              emerald: '#10B981'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .holo-gradient {
+      background: linear-gradient(135deg, #00F0FF 0%, #3B82F6 40%, #A855F7 70%, #EC4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% 200%;
+      animation: gradientShift 6s ease infinite;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .glass-panel {
+      background: rgba(12, 19, 36, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 240, 255, 0.18);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-panel:hover {
+      border-color: rgba(0, 240, 255, 0.55);
+      box-shadow: 0 12px 40px 0 rgba(0, 240, 255, 0.22);
+      transform: translateY(-4px);
+    }
+    .cert-thumb {
+      transition: transform 0.4s ease;
+    }
+    .cert-card:hover .cert-thumb {
+      transform: scale(1.04);
+    }
+  </style>
+</head>
+<body class="bg-cyber-void text-slate-100 font-sans antialiased selection:bg-cyber-cyan selection:text-black relative overflow-x-hidden">
+
+  <!-- ЖИВОЙ ФОНОВЫЙ ХОЛСТ С ЧАСТИЦАМИ И СЕТЬЮ -->
+  <canvas id="cyber-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+  <!-- СВЕТОВЫЕ НЕОНОВЫЕ ПЯТНА -->
+  <div class="fixed -top-40 -left-40 w-[600px] h-[600px] bg-cyan-500/15 rounded-full blur-[140px] pointer-events-none z-0"></div>
+  <div class="fixed top-1/2 -right-40 w-[650px] h-[650px] bg-purple-500/15 rounded-full blur-[140px] pointer-events-none z-0"></div>
+
+  <!-- ВЕРХНЯЯ КИБЕР-ПАНЕЛЬ СТАТУСА -->
+  <aside aria-label="Системный мониторинг" class="relative z-40 bg-black/70 border-b border-cyan-500/20 py-2 px-4 backdrop-blur-xl text-xs font-mono">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyber-cyan border border-cyan-500/30 text-[11px] font-bold">
+          <span class="w-2 h-2 rounded-full bg-cyber-cyan animate-pulse"></span> CERTIFIED ENGINE
+        </span>
+        <span class="hidden sm:inline text-slate-400 text-[11px]">Audit Status: <strong class="text-emerald-400">Verified Professional</strong></span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-300 text-[11px]">
+        <span class="text-slate-400">Specialist: <strong class="text-white">Павел Захаров</strong></span>
+        <span class="text-slate-600">|</span>
+        <span class="text-cyber-cyan font-bold">IT Life Quality Standard</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ШАПКА САЙТА -->
+  <header class="sticky top-0 z-40 bg-cyber-void/85 backdrop-blur-2xl border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+      
+      <!-- Логотип IT Life -->
+      <a href="index.html" class="flex items-center gap-3.5 group">
+        <div class="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-slate-900/90 border border-cyan-500/35 p-1 flex items-center justify-center shadow-lg shadow-cyan-500/15 group-hover:border-cyan-400 group-hover:shadow-cyan-500/35 transition-all duration-300">
+          <img src="logo.svg" alt="IT Life Logo" class="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(0,240,255,0.7)] group-hover:scale-105 transition-transform" onerror="this.src='logo.png'">
+        </div>
+        <div class="leading-tight">
+          <div class="flex items-center gap-2">
+            <span class="font-sans text-2xl font-black tracking-tight text-white">IT Life</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 uppercase tracking-wider">CORP</span>
+          </div>
+          <span class="block text-[9px] font-mono tracking-widest text-slate-400 uppercase mt-0.5">a PAVLIKneMOROZOFF company</span>
+        </div>
+      </a>
+
+      <!-- Меню -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300">
+        <a href="index.html" class="hover:text-cyber-cyan transition flex items-center gap-1.5">
+          <i data-lucide="home" class="w-4 h-4"></i> Главная
+        </a>
+        <a href="index.html#solutions" class="hover:text-cyber-cyan transition flex items-center gap-1.5">
+          <i data-lucide="sparkles" class="w-4 h-4 text-cyber-cyan"></i> Решения
+        </a>
+        <a href="competencies.html" class="text-cyber-cyan transition flex items-center gap-1.5 font-bold">
+          <i data-lucide="award" class="w-4 h-4 text-emerald-400"></i> Сертификация
+        </a>
+        <a href="index.html#calculator" class="hover:text-cyber-cyan transition flex items-center gap-1.5">
+          <i data-lucide="calculator" class="w-4 h-4 text-pink-400"></i> Калькулятор стека
+        </a>
+      </nav>
+
+      <!-- Кнопка контакта -->
+      <div class="flex items-center gap-3">
+        <a href="index.html#contacts" class="relative group overflow-hidden px-5 py-2.5 rounded-xl font-mono text-xs uppercase font-bold tracking-wider text-black bg-gradient-to-r from-cyber-cyan via-blue-400 to-purple-400 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/50 hover:scale-105 transition-all">
+          <span class="relative z-10 flex items-center gap-1.5">
+            <i data-lucide="send" class="w-3.5 h-3.5"></i> Запустить проект
+          </span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. HERO СЕКЦИЯ КОМПЕТЕНЦИЙ -->
+  <section class="relative z-10 pt-16 sm:pt-20 pb-12 px-4 text-center">
+    <div class="max-w-4xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/40 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 text-cyber-cyan text-xs font-mono font-bold mb-6">
+        <i data-lucide="shield-check" class="w-4 h-4"></i>
+        <span>Аттестованные стандарты разработки и системного администрирования</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6">
+        Официальные <span class="holo-gradient">Сертификаты</span><br>
+        и Технические Компетенции
+      </h1>
+
+      <p class="text-base sm:text-lg text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
+        Все проекты компании IT Life создаются под контролем сертифицированных специалистов с многолетним стажем работы в архитектуре сложных веб-платформ и баз данных.
+      </p>
+
+      <!-- Фильтры категорий -->
+      <div class="flex flex-wrap justify-center gap-2.5 mt-10 font-mono text-xs">
+        <button onclick="filterCerts('all')" class="filter-btn active px-4 py-2 rounded-xl bg-cyan-500 text-black font-bold shadow-md shadow-cyan-500/30 transition">Все сертификаты (8)</button>
+        <button onclick="filterCerts('admin')" class="filter-btn px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:border-cyan-400 transition">Администрирование (3)</button>
+        <button onclick="filterCerts('partner')" class="filter-btn px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:border-cyan-400 transition">Партнерство (2)</button>
+        <button onclick="filterCerts('content')" class="filter-btn px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:border-cyan-400 transition">Контент &amp; Модули (3)</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. ИНТЕРАКТИВНАЯ ГАЛЕРЕЯ СЕРТИФИКАТОВ -->
+  <section class="relative z-10 py-12 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div id="certs-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+        <!-- Сертификат 1 -->
+        <div class="cert-card glass-panel rounded-2xl p-4 flex flex-col justify-between cursor-pointer" data-cat="admin" onclick="openCertModal('Администратор. Базовый', '1С-Битрикс: Управление сайтом', 'Полный контроль системной безопасности, авторизации пользователей, инфоблоков и производительности.', '130.jpg')">
+          <div>
+            <div class="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 bg-slate-950 border border-white/10">
+              <img src="130.jpg" alt="Администратор. Базовый" class="cert-thumb w-full h-full object-cover" onerror="this.src='132.jpg'">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyber-cyan border border-cyan-500/40">1С-Битрикс #130</span>
+              </div>
+            </div>
+            <h3 class="font-bold text-white text-base mb-1">Администратор. Базовый</h3>
+            <p class="text-slate-400 text-xs line-clamp-2">Контроль архитектуры безопасности, учетных записей и резервного копирования.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-cyan-400">
+            <span>Просмотр документа</span>
+            <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- Сертификат 2 -->
+        <div class="cert-card glass-panel rounded-2xl p-4 flex flex-col justify-between cursor-pointer" data-cat="admin" onclick="openCertModal('Администратор. Модули', '1С-Битрикс: Управление сайтом', 'Глубокая интеграция торговых каталогов, электронных форм, платежных шлюзов и почтовых систем.', '132.jpg')">
+          <div>
+            <div class="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 bg-slate-950 border border-white/10">
+              <img src="132.jpg" alt="Администратор. Модули" class="cert-thumb w-full h-full object-cover" onerror="this.src='130.jpg'">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 border border-blue-500/40">1С-Битрикс #132</span>
+              </div>
+            </div>
+            <h3 class="font-bold text-white text-base mb-1">Администратор. Модули</h3>
+            <p class="text-slate-400 text-xs line-clamp-2">Интеграция торговых каталогов, веб-форм и сложных интеграционных модулей.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-cyan-400">
+            <span>Просмотр документа</span>
+            <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- Сертификат 3 -->
+        <div class="cert-card glass-panel rounded-2xl p-4 flex flex-col justify-between cursor-pointer" data-cat="admin" onclick="openCertModal('Установка и настройка системы', '1С-Битрикс: Платформа', 'Конфигурация веб-серверов Linux Nginx/Apache, баз данных MySQL/PostgreSQL и оптимизация нагрузки.', '186.jpg')">
+          <div>
+            <div class="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 bg-slate-950 border border-white/10">
+              <img src="186.jpg" alt="Установка и настройка" class="cert-thumb w-full h-full object-cover" onerror="this.src='130.jpg'">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 border border-purple-500/40">1С-Битрикс #186</span>
+              </div>
+            </div>
+            <h3 class="font-bold text-white text-base mb-1">Установка и настройка</h3>
+            <p class="text-slate-400 text-xs line-clamp-2">Конфигурация серверов, оптимизация PHP окружения и параметров баз данных.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-cyan-400">
+            <span>Просмотр документа</span>
+            <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- Сертификат 4 -->
+        <div class="cert-card glass-panel rounded-2xl p-4 flex flex-col justify-between cursor-pointer" data-cat="content" onclick="openCertModal('Контент-менеджер', '1С-Битрикс: Контент & SEO', 'Управление структурой данных, SEO-метатегами, оптимизация графики и медиапотоков.', '450.jpg')">
+          <div>
+            <div class="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 bg-slate-950 border border-white/10">
+              <img src="450.jpg" alt="Контент-менеджер" class="cert-thumb w-full h-full object-cover" onerror="this.src='130.jpg'">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">1С-Битрикс #450</span>
+              </div>
+            </div>
+            <h3 class="font-bold text-white text-base mb-1">Контент-менеджер</h3>
+            <p class="text-slate-400 text-xs line-clamp-2">Структура страниц, SEO-оптимизация и высокоэффективное размещение данных.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-cyan-400">
+            <span>Просмотр документа</span>
+            <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- Сертификат 5: Партнерка 1 -->
+        <div class="cert-card glass-panel rounded-2xl p-4 flex flex-col justify-between cursor-pointer" data-cat="partner" onclick="openCertModal('Сертификат Партнера 1С-Битрикс', 'Официальная партнерская сеть', 'Официальный статус партнера по разработке и интеграции программных продуктов.', '279ba029-0cdb-44f8-9898-92c4428b065b.jpg')">
+          <div>
+            <div class="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 bg-slate-950 border border-white/10">
+              <img src="279ba029-0cdb-44f8-9898-92c4428b065b.jpg" alt="Партнерская программа" class="cert-thumb w-full h-full object-cover" onerror="this.src='130.jpg'">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/40">Партнерская сеть</span>
+              </div>
+            </div>
+            <h3 class="font-bold text-white text-base mb-1">Сертификат Партнера</h3>
+            <p class="text-slate-400 text-xs line-clamp-2">Подтвержденный статус участника официальной партнерской сети внедрения систем.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-cyan-400">
+            <span>Просмотр документа</span>
+            <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- Сертификат 6: Партнерка 2 -->
+        <div class="cert-card glass-panel rounded-2xl p-4 flex flex-col justify-between cursor-pointer" data-cat="partner" onclick="openCertModal('Аккредитация решений', 'Партнерский статус', 'Компетенции в развертывании решений для корпоративного сектора и бизнеса.', 'de48a9b9-96e6-47c8-8259-89fb692f2801.jpg')">
+          <div>
+            <div class="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 bg-slate-950 border border-white/10">
+              <img src="de48a9b9-96e6-47c8-8259-89fb692f2801.jpg" alt="Аккредитация решений" class="cert-thumb w-full h-full object-cover" onerror="this.src='130.jpg'">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-pink-500/20 text-pink-400 border border-pink-500/40">Партнерская сеть</span>
+              </div>
+            </div>
+            <h3 class="font-bold text-white text-base mb-1">Аккредитация решений</h3>
+            <p class="text-slate-400 text-xs line-clamp-2">Подтверждение стандартов разработки и качества внедряемого программного обеспечения.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-cyan-400">
+            <span>Просмотр документа</span>
+            <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- Сертификат 7 -->
+        <div class="cert-card glass-panel rounded-2xl p-4 flex flex-col justify-between cursor-pointer" data-cat="content" onclick="openCertModal('Управление структурой каталога', 'E-Commerce архитектура', 'Разработка сложных товарных матриц, свойств, фильтрации и связок данных.', '452.jpg')">
+          <div>
+            <div class="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 bg-slate-950 border border-white/10">
+              <img src="452.jpg" alt="Каталоги и структуры" class="cert-thumb w-full h-full object-cover" onerror="this.src='130.jpg'">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyber-cyan border border-cyan-500/40">1С-Битрикс #452</span>
+              </div>
+            </div>
+            <h3 class="font-bold text-white text-base mb-1">Структура каталогов</h3>
+            <p class="text-slate-400 text-xs line-clamp-2">Проектирование иерархий данных, фасетных индексов и фильтров для каталогов.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-cyan-400">
+            <span>Просмотр документа</span>
+            <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- Сертификат 8 -->
+        <div class="cert-card glass-panel rounded-2xl p-4 flex flex-col justify-between cursor-pointer" data-cat="content" onclick="openCertModal('Интеграционные веб-формы', 'Лидогенерация & CRM', 'Организация сбора обратной связи, защищенных полей ввода и антиспам-фильтров.', '454.jpg')">
+          <div>
+            <div class="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 bg-slate-950 border border-white/10">
+              <img src="454.jpg" alt="Интеграционные формы" class="cert-thumb w-full h-full object-cover" onerror="this.src='130.jpg'">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 border border-blue-500/40">1С-Битрикс #454</span>
+              </div>
+            </div>
+            <h3 class="font-bold text-white text-base mb-1">Интеграционные формы</h3>
+            <p class="text-slate-400 text-xs line-clamp-2">Разработка потоков захвата лидов, валидации данных и безопасной передачи.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-cyan-400">
+            <span>Просмотр документа</span>
+            <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. ТЕХНИЧЕСКИЙ МАНИФЕСТ КАЧЕСТВА -->
+  <section class="relative z-10 py-16 px-4 bg-cyber-base/70 border-y border-white/10">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-10">
+        <span class="text-cyber-cyan text-xs font-mono uppercase tracking-widest font-semibold">Инженерные принципы</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-white font-title mt-2">Как сертификаты работают на практике</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 font-mono text-xs">
+        <div class="p-6 rounded-2xl bg-black/40 border border-white/10">
+          <div class="text-cyber-cyan font-bold text-sm mb-2 flex items-center gap-2">
+            <i data-lucide="database" class="w-4 h-4"></i> Чистота баз данных
+          </div>
+          <p class="text-slate-400 leading-relaxed font-sans">
+            Никаких лишних таблиц и мусора от неиспользуемых плагинов. Индексация запросов, минимизирующая время выборки до 5–15 мс.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-black/40 border border-white/10">
+          <div class="text-purple-400 font-bold text-sm mb-2 flex items-center gap-2">
+            <i data-lucide="lock" class="w-4 h-4"></i> Корпоративная безопасность
+          </div>
+          <p class="text-slate-400 leading-relaxed font-sans">
+            Защита от инъекций, экранирование входных данных, двухфакторный доступ и изоляция чувствительных баз данных за сетевым экраном.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-black/40 border border-white/10">
+          <div class="text-emerald-400 font-bold text-sm mb-2 flex items-center gap-2">
+            <i data-lucide="refresh-cw" class="w-4 h-4"></i> Бесшовный перенос
+          </div>
+          <p class="text-slate-400 leading-relaxed font-sans">
+            Быстрая выгрузка каталогов, контента и клиентских данных из Битрикса напрямую в вашу новую автономную CRM без потери истории.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- МОДАЛЬНОЕ ОКНО ПРОСМОТРА СЕРТИФИКАТА (ZOOM MODAL) -->
+  <div id="cert-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="relative max-w-4xl w-full glass-panel rounded-3xl p-6 border border-cyan-500/50 shadow-2xl flex flex-col md:flex-row gap-6">
+      
+      <!-- Кнопка закрытия -->
+      <button onclick="closeCertModal()" class="absolute -top-3 -right-3 p-2.5 rounded-full bg-cyan-500 text-black hover:scale-110 transition shadow-lg z-10" aria-label="Закрыть">
+        <i data-lucide="x" class="w-5 h-5 stroke-[2.5]"></i>
+      </button>
+
+      <!-- Изображение -->
+      <div class="md:w-3/5 rounded-2xl overflow-hidden bg-slate-950 border border-white/10 flex items-center justify-center">
+        <img id="modal-img" src="" alt="Сертификат" class="w-full h-auto max-h-[70vh] object-contain">
+      </div>
+
+      <!-- Описание документа -->
+      <div class="md:w-2/5 flex flex-col justify-between py-2">
+        <div>
+          <span id="modal-org" class="text-xs font-mono text-cyber-cyan block mb-2 font-bold uppercase tracking-wider">ОРГАНИЗАЦИЯ</span>
+          <h3 id="modal-title" class="text-2xl font-bold text-white mb-3">Название сертификата</h3>
+          <p id="modal-desc" class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">Описание квалификации...</p>
+          
+          <div class="p-3 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-slate-300 space-y-1">
+            <div>Статус: <strong class="text-emerald-400">Аккредитован</strong></div>
+            <div>Специалист: <strong class="text-white">Павел Захаров</strong></div>
+          </div>
+        </div>
+
+        <button onclick="closeCertModal()" class="mt-6 w-full py-3 rounded-xl font-mono text-xs font-bold uppercase tracking-wider bg-white/10 hover:bg-white/20 text-white transition">
+          Закрыть просмотр
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ПОДВАЛ IT LIFE -->
+  <footer id="footer-section" class="relative z-10 border-t border-white/10 bg-black/90 pt-12 pb-36 px-4 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+      
+      <!-- Логотип и миссия -->
+      <div class="flex items-center gap-3.5">
+        <div class="relative w-10 h-10 rounded-xl bg-slate-900/90 border border-cyan-500/35 p-1 flex items-center justify-center shadow-lg shadow-cyan-500/10">
+          <img src="logo.svg" alt="IT Life" class="w-full h-full object-contain filter drop-shadow-[0_0_6px_rgba(0,240,255,0.5)]" onerror="this.src='logo.png'">
+        </div>
+        <div class="text-left leading-tight">
+          <span class="font-sans font-bold text-white text-base">IT Life</span>
+          <p class="text-slate-400 text-[11px]">Технологическая экосистема веб-разработки и CRM-решений</p>
+        </div>
+      </div>
+
+      <!-- Копирайт -->
+      <div class="font-mono text-[11px]">
+        © 2026 IT Life. Все права защищены.
+      </div>
+
+      <!-- ЗОНТИЧНЫЙ БРЕНД -->
+      <div class="flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-white/[0.03] border border-cyan-500/30 hover:border-cyan-500/60 transition group">
+        <div class="w-2.5 h-2.5 rounded-full bg-cyber-cyan animate-pulse"></div>
+        <div class="text-left leading-snug font-mono">
+          <div class="text-slate-400 text-[11px] font-medium tracking-wide font-sans">
+            Разработано <span class="text-white font-bold tracking-wider">IT Life</span>
+          </div>
+          <div class="text-[10px] tracking-widest text-slate-500 uppercase">
+            a <span class="text-cyber-cyan font-bold">PAVLIKneMOROZOFF</span> company
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ПРИПОДНЯТАЯ КНОПКА «НАВЕРХ» -->
+  <button id="back-to-top" aria-label="Подняться вверх" class="fixed bottom-36 sm:bottom-44 right-5 sm:right-6 z-50 p-3.5 rounded-full bg-cyber-card text-cyber-cyan border border-cyan-500/50 shadow-2xl shadow-cyan-500/20 hover:bg-cyber-cyan hover:text-black transition-all duration-300 transform opacity-0 translate-y-10 pointer-events-none group hover:scale-110">
+    <i data-lucide="chevron-up" class="w-5 h-5 stroke-[2.5]"></i>
+  </button>
+
+  <!-- СКРИПТЫ: МОДАЛЬНОЕ ОКНО + CANVAS + ФИЛЬТРЫ + СКРОЛЛ -->
+  <script>
+    lucide.createIcons();
+
+    // 1. Модальное окно просмотра сертификата
+    const certModal = document.getElementById('cert-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalOrg = document.getElementById('modal-org');
+    const modalDesc = document.getElementById('modal-desc');
+
+    function openCertModal(title, org, desc, imgSrc) {
+      modalTitle.textContent = title;
+      modalOrg.textContent = org;
+      modalDesc.textContent = desc;
+      modalImg.src = imgSrc;
+
+      certModal.classList.remove('opacity-0', 'pointer-events-none');
+      certModal.classList.add('opacity-100', 'pointer-events-auto');
+    }
+
+    function closeCertModal() {
+      certModal.classList.remove('opacity-100', 'pointer-events-auto');
+      certModal.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    certModal.addEventListener('click', (e) => {
+      if (e.target === certModal) closeCertModal();
+    });
+
+    // 2. Фильтрация сертификатов
+    function filterCerts(category) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-cyan-500', 'text-black');
+        btn.classList.add('bg-white/5', 'text-slate-300');
+      });
+      event.target.classList.remove('bg-white/5', 'text-slate-300');
+      event.target.classList.add('bg-cyan-500', 'text-black');
+
+      document.querySelectorAll('.cert-card').forEach(card => {
+        if (category === 'all' || card.getAttribute('data-cat') === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // 3. Живой фоновый Canvas
+    const canvas = document.getElementById('cyber-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    const particleCount = Math.min(Math.floor(window.innerWidth / 22), 55);
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        radius: Math.random() * 1.5 + 1
+      });
+    }
+
+    function renderCanvas() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 240, 255, 0.6)';
+        ctx.fill();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 130) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(0, 240, 255, ${0.15 * (1 - dist / 130)})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(renderCanvas);
+    }
+    renderCanvas();
+
+    // 4. Кнопка «Наверх»
+    const backToTopBtn = document.getElementById('back-to-top');
+    const footerSection = document.getElementById('footer-section');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+        backToTopBtn.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      } else {
+        backToTopBtn.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+        backToTopBtn.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      }
+
+      if (footerSection) {
+        const footerRect = footerSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        if (footerRect.top < windowHeight) {
+          backToTopBtn.style.bottom = `${(windowHeight - footerRect.top) + 24}px`;
+        } else {
+          backToTopBtn.style.bottom = '';
+        }
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
